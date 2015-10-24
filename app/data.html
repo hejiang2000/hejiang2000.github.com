@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>集合管理 | 开发手册</title>
+        <title>记录表单数据 | 开发手册</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath=".." data-revision="Tue Oct 20 2015 21:40:04 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="1.4" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -84,7 +84,7 @@
                         
                             <b>1.</b>
                         
-                        应用开发手册
+                        系统调用接口
                     </a>
             
             
@@ -136,16 +136,16 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4" data-path="app/coll.html">
+        <li class="chapter active" data-level="1.4" data-path="app/data.html">
             
                 
-                    <a href="../app/coll.html">
+                    <a href="../app/data.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>1.4.</b>
                         
-                        集合管理
+                        记录表单数据
                     </a>
             
             
@@ -161,6 +161,87 @@
                             <b>1.5.</b>
                         
                         应用管理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="obj/index.html">
+            
+                
+                    <a href="../obj/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        对象格式说明
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="obj/user.html">
+            
+                
+                    <a href="../obj/user.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        用户对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="obj/proj.html">
+            
+                
+                    <a href="../obj/proj.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        项目对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="obj/data.html">
+            
+                
+                    <a href="../obj/data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        表单数据格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="obj/app.html">
+            
+                
+                    <a href="../obj/app.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        应用对象格式
                     </a>
             
             
@@ -277,86 +358,10 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="collections">COLLECTIONS</h1>
-<h2 id="%E8%AF%BB%E5%8F%96%E5%85%A8%E9%83%A8%E9%9B%86%E5%90%88%E4%BF%A1%E6%81%AF">&#x8BFB;&#x53D6;&#x5168;&#x90E8;&#x96C6;&#x5408;&#x4FE1;&#x606F;</h2>
+                        <h2 id="%E8%AE%B0%E5%BD%95%E5%A4%9A%E6%9D%A1%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE">&#x8BB0;&#x5F55;&#x591A;&#x6761;&#x8868;&#x5355;&#x6570;&#x636E;</h2>
 <p>&#x8BF7;&#x6C42;</p>
 <blockquote>
-<p>GET /api/projects/PROJECT_ID/collections?api_key=READ_KEY</p>
-</blockquote>
-<p>&#x8FD4;&#x56DE;</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8</p>
-<pre><code class="lang-json">[
-  {
-    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;trainers&quot;</span>,
-    <span class="hljs-string">&quot;properties&quot;</span>: {
-      <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;item.on_sale&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
-      <span class="hljs-string">&quot;item.price&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;screen.name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user.id&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.referring_source&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    },
-    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/api/projects/&lt;PROJECT_ID&gt;/collections/trainers&quot;</span>
-  },
-  {
-    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;students&quot;</span>,
-    <span class="hljs-string">&quot;properties&quot;</span>: {
-      <span class="hljs-string">&quot;from_level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;screen.name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;to_level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.id&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.prior_balance&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.referring_source&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    },
-    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/api/projects/&lt;PROJECT_ID&gt;/collections/students&quot;</span>
-  },
-  {
-    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;classes&quot;</span>,
-    <span class="hljs-string">&quot;properties&quot;</span>: {
-      <span class="hljs-string">&quot;user.email&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user.id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user_agent.browser&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user_agent.browser_version&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user_agent.platform&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    },
-    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/api/projects/&lt;PROJECT_ID&gt;/collections/classes&quot;</span>
-  }
-]
-</code></pre>
-</blockquote>
-<h2 id="%E8%AF%BB%E5%8F%96%E5%8D%95%E4%B8%AA%E9%9B%86%E5%90%88%E4%BF%A1%E6%81%AF">&#x8BFB;&#x53D6;&#x5355;&#x4E2A;&#x96C6;&#x5408;&#x4FE1;&#x606F;</h2>
-<p>&#x8BF7;&#x6C42;</p>
-<blockquote>
-<p>GET /api/projects/PROJECT_ID/collections/COLLECTION_NAME?api_key=READ_KEY</p>
-</blockquote>
-<p>&#x8FD4;&#x56DE;</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8</p>
-<pre><code class="lang-json">{
-    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;trainers&quot;</span>,
-    <span class="hljs-string">&quot;properties&quot;</span>: {
-      <span class="hljs-string">&quot;item.id&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;item.on_sale&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
-      <span class="hljs-string">&quot;item.price&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;screen.name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-string">&quot;user.id&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.level&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
-      <span class="hljs-string">&quot;user.referring_source&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    },
-    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;/api/projects/&lt;PROJECT_ID&gt;/collections/trainers&quot;</span>
-}
-</code></pre>
-</blockquote>
-<h2 id="%E8%AE%B0%E5%BD%95%E5%A4%9A%E6%9D%A1%E6%95%B0%E6%8D%AE">&#x8BB0;&#x5F55;&#x591A;&#x6761;&#x6570;&#x636E;</h2>
-<p>&#x8BF7;&#x6C42;</p>
-<blockquote>
-<p>POST /api/projects/PROJECT_ID/collections?api_key=WRITE_KEY<br>Content-Type: application/json; charset=utf-8</p>
+<p>POST /api/projects/PROJECT_ID/sheets?api_key=WRITE_KEY<br>Content-Type: application/json; charset=utf-8</p>
 <pre><code class="lang-json">{
       <span class="hljs-string">&quot;trainers&quot;</span>: [
         { <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;&#x4F55;&#x6C5F;&quot;</span> },
@@ -395,7 +400,7 @@
 <h2 id="%E8%AE%B0%E5%BD%95%E5%8D%95%E6%9D%A1%E6%95%B0%E6%8D%AE">&#x8BB0;&#x5F55;&#x5355;&#x6761;&#x6570;&#x636E;</h2>
 <p>&#x8BF7;&#x6C42;</p>
 <blockquote>
-<p>POST /api/projects/PROJECT_ID/collections/COLLECTION_NAME?api_key=WRITE_KEY<br>Content-Type: application/json; charset=utf-8</p>
+<p>POST /api/projects/PROJECT_ID/sheets/SHEET_NAME?api_key=WRITE_KEY<br>Content-Type: application/json; charset=utf-8</p>
 <pre><code class="lang-json">{
     <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;John&quot;</span>
 }
@@ -409,32 +414,9 @@
 }
 </code></pre>
 </blockquote>
-<h2 id="%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88">&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x96C6;&#x5408;</h2>
-<p>&#x8BF7;&#x6C42;</p>
-<blockquote>
-<p>DELETE /api/projects/PROJECT_ID/collections/COLLECTION_NAME?api_key=MASTER_KEY</p>
-</blockquote>
-<p>&#x8FD4;&#x56DE;</p>
-<blockquote>
-<p>HTTP/1.1 200 OK</p>
-</blockquote>
-<h2 id="%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%B1%9E%E6%80%A7">&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;</h2>
-<p>&#x8BF7;&#x6C42;</p>
-<blockquote>
-<p>DELETE /api/projects/PROJECT_ID/collections/COLLECTION_NAME/properties/PROPERTY_NAME?api_key=MASTER_KEY</p>
-</blockquote>
-<p>&#x8FD4;&#x56DE;</p>
-<blockquote>
-<p>HTTP/1.1 200 OK</p>
-</blockquote>
 <h2 id="%E8%87%AA%E5%8A%A8%E5%B1%9E%E6%80%A7">&#x81EA;&#x52A8;&#x5C5E;&#x6027;</h2>
 <p>&#x81EA;&#x52A8;&#x5C5E;&#x6027;&#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x5230;&#x6BCF;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#x3002;</p>
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;record&quot;</span>: {
-    <span class="hljs-string">&quot;created_at&quot;</span>: <span class="hljs-string">&quot;2012-12-14T20:24:01.123000+00:00&quot;</span>,
-    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;2012-12-14T20:24:01.123000+00:00&quot;</span>,
-    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;asd9fadifjaqw9asdfasdf939&quot;</span>
-  },
   <span class="hljs-string">&quot;device&quot;</span>: {
     <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;0980980231sdfsss&quot;</span>,
     <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;iPhone 6s plus&quot;</span>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>用户管理 | 开发手册</title>
+        <title>应用对象格式 | 开发手册</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,8 @@
         
     
     
-    <link rel="next" href="../app/proj.html" />
     
-    
-    <link rel="prev" href="../app/auth.html" />
+    <link rel="prev" href="../obj/data.html" />
     
 
         
@@ -44,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="2.4" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -106,7 +104,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="app/user.html">
+        <li class="chapter " data-level="1.2" data-path="app/user.html">
             
                 
                     <a href="../app/user.html">
@@ -232,7 +230,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="obj/app.html">
+        <li class="chapter active" data-level="2.4" data-path="obj/app.html">
             
                 
                     <a href="../obj/app.html">
@@ -358,55 +356,44 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="users">USERS</h1>
-<p>&#x7528;&#x6237;&#x7BA1;&#x7406;&#x6A21;&#x5757;&#x7BA1;&#x7406;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x548C;&#x6388;&#x6743;&#x4FE1;&#x606F;&#x3002;</p>
-<h2 id="%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x767B;&#x5F55;&#x7528;&#x6237;&#x4FE1;&#x606F;</h2>
-<p>&#x8BF7;&#x6C42;:</p>
-<blockquote>
-<p>GET /api/users/me?api_key=MASTER_KEY HTTP/1.1</p>
-</blockquote>
-<p>&#x5931;&#x8D25;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 401 Unauthorized</p>
-</blockquote>
-<p>&#x6210;&#x529F;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
+                        <h1 id="applications">APPLICATIONS</h1>
+<h2 id="%E5%BA%94%E7%94%A8%E5%AF%B9%E8%B1%A1%E6%A0%BC%E5%BC%8F">&#x5E94;&#x7528;&#x5BF9;&#x8C61;&#x683C;&#x5F0F;</h2>
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;masterKey&quot;</span>: <span class="hljs-string">&quot;&lt;MASTER_KEY&gt;&quot;</span>,
-  <span class="hljs-string">&quot;userName&quot;</span>: <span class="hljs-string">&quot;hejiang&quot;</span>,
-  <span class="hljs-string">&quot;mobile&quot;</span>: <span class="hljs-string">&quot;13920922275&quot;</span>,
-  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;hejiang@tju.edu.cn&quot;</span>,
-  <span class="hljs-string">&quot;firstName&quot;</span>: <span class="hljs-string">&quot;Jiang&quot;</span>,
-  <span class="hljs-string">&quot;lastName&quot;</span>: <span class="hljs-string">&quot;He&quot;</span>,
-  <span class="hljs-string">&quot;active&quot;</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-string">&quot;preferences&quot;</span>: {
-    <span class="hljs-string">&quot;locale&quot;</span>: <span class="hljs-literal">null</span>
-  },
-  <span class="hljs-string">&quot;created&quot;</span>: <span class="hljs-string">&quot;2015-05-18T15:06:28.841Z&quot;</span>,
-  <span class="hljs-string">&quot;lastUpdated&quot;</span>: <span class="hljs-string">&quot;2015-05-18T13:18:48.181Z&quot;</span>,
-  <span class="hljs-string">&quot;lastUsed&quot;</span>: <span class="hljs-string">&quot;2015-05-18T13:18:48.181Z&quot;</span>
+    <span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-string">&quot;&lt;APPLICATION_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;owner&quot;</span>:<span class="hljs-string">&quot;&lt;OWNER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;&lt;USER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;&#x5065;&#x8EAB;&#x623F;&#x7BA1;&#x7406;&quot;</span>,
+    <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
+    <span class="hljs-string">&quot;entries&quot;</span> : [{
+        <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;&#x8F93;&#x5165;&#x6559;&#x7EC3;&#x4FE1;&#x606F;&quot;</span>,
+        <span class="hljs-string">&quot;icon&quot;</span> : <span class="hljs-string">&quot;url1&quot;</span>,
+        <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
+        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_NAME&gt;&quot;</span>
+    }, {
+        <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;&#x8F93;&#x5165;&#x5B66;&#x5458;&#x4FE1;&#x606F;&quot;</span>,
+        <span class="hljs-string">&quot;icon&quot;</span> : <span class="hljs-string">&quot;url2&quot;</span>,
+        <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
+        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_NAME&gt;&quot;</span>
+    }],
+    <span class="hljs-string">&quot;sheets&quot;</span> : [{
+        <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;sheet1&quot;</span>,
+        <span class="hljs-string">&quot;fields&quot;</span> : [{
+          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;field&quot;</span>,
+          <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>,
+          <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
+          <span class="hljs-string">&quot;format&quot;</span> : <span class="hljs-string">&quot;format&quot;</span>,
+          <span class="hljs-string">&quot;default&quot;</span> : {
+            <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;literal&quot;</span>,
+            <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-string">&quot;3223&quot;</span>
+          },
+          <span class="hljs-string">&quot;required&quot;</span> : <span class="hljs-literal">true</span>,
+          <span class="hljs-string">&quot;visible&quot;</span> : <span class="hljs-literal">true</span>,
+          <span class="hljs-string">&quot;editable&quot;</span> : <span class="hljs-literal">true</span>
+        }],
+        <span class="hljs-string">&quot;parentSheet&quot;</span> : <span class="hljs-literal">null</span>
+    }]
 }
 </code></pre>
-</blockquote>
-<h2 id="%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90masterkey">&#x91CD;&#x65B0;&#x751F;&#x6210;MasterKey</h2>
-<p>&#x8BF7;&#x6C42;:</p>
-<blockquote>
-<p>GET /api/users/me/createmasterkey?api_key=MASTER_KEY HTTP/1.1
-&#x5931;&#x8D25;, &#x8FD4;&#x56DE;:
-HTTP/1.1 401 Unauthorized</p>
-</blockquote>
-<p>&#x6210;&#x529F;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
-<pre><code class="lang-json">{
-    <span class="hljs-string">&quot;masterKey&quot;</span>: <span class="hljs-string">&quot;asd9fadifjaqw9asdfasdf939&quot;</span>
-}
-</code></pre>
-</blockquote>
 
                     
                     </section>
@@ -417,10 +404,8 @@ HTTP/1.1 401 Unauthorized</p>
         </div>
 
         
-        <a href="../app/auth.html" class="navigation navigation-prev " aria-label="Previous page: 用户认证"><i class="fa fa-angle-left"></i></a>
+        <a href="../obj/data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 表单数据格式"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../app/proj.html" class="navigation navigation-next " aria-label="Next page: 项目管理"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>用户管理 | 开发手册</title>
+        <title>表单数据格式 | 开发手册</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,10 @@
         
     
     
-    <link rel="next" href="../app/proj.html" />
+    <link rel="next" href="../obj/app.html" />
     
     
-    <link rel="prev" href="../app/auth.html" />
+    <link rel="prev" href="../obj/proj.html" />
     
 
         
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -106,7 +106,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="app/user.html">
+        <li class="chapter " data-level="1.2" data-path="app/user.html">
             
                 
                     <a href="../app/user.html">
@@ -217,7 +217,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="obj/data.html">
+        <li class="chapter active" data-level="2.3" data-path="obj/data.html">
             
                 
                     <a href="../obj/data.html">
@@ -358,55 +358,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="users">USERS</h1>
-<p>&#x7528;&#x6237;&#x7BA1;&#x7406;&#x6A21;&#x5757;&#x7BA1;&#x7406;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x548C;&#x6388;&#x6743;&#x4FE1;&#x606F;&#x3002;</p>
-<h2 id="%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x767B;&#x5F55;&#x7528;&#x6237;&#x4FE1;&#x606F;</h2>
-<p>&#x8BF7;&#x6C42;:</p>
-<blockquote>
-<p>GET /api/users/me?api_key=MASTER_KEY HTTP/1.1</p>
-</blockquote>
-<p>&#x5931;&#x8D25;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 401 Unauthorized</p>
-</blockquote>
-<p>&#x6210;&#x529F;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
+                        <h2 id="%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F">&#x8868;&#x5355;&#x6570;&#x636E;&#x8BB0;&#x5F55;&#x683C;&#x5F0F;</h2>
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;5559fff32c8b9518f3672cd2&quot;</span>,
-  <span class="hljs-string">&quot;masterKey&quot;</span>: <span class="hljs-string">&quot;&lt;MASTER_KEY&gt;&quot;</span>,
-  <span class="hljs-string">&quot;userName&quot;</span>: <span class="hljs-string">&quot;hejiang&quot;</span>,
-  <span class="hljs-string">&quot;mobile&quot;</span>: <span class="hljs-string">&quot;13920922275&quot;</span>,
-  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;hejiang@tju.edu.cn&quot;</span>,
-  <span class="hljs-string">&quot;firstName&quot;</span>: <span class="hljs-string">&quot;Jiang&quot;</span>,
-  <span class="hljs-string">&quot;lastName&quot;</span>: <span class="hljs-string">&quot;He&quot;</span>,
-  <span class="hljs-string">&quot;active&quot;</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-string">&quot;preferences&quot;</span>: {
-    <span class="hljs-string">&quot;locale&quot;</span>: <span class="hljs-literal">null</span>
-  },
-  <span class="hljs-string">&quot;created&quot;</span>: <span class="hljs-string">&quot;2015-05-18T15:06:28.841Z&quot;</span>,
-  <span class="hljs-string">&quot;lastUpdated&quot;</span>: <span class="hljs-string">&quot;2015-05-18T13:18:48.181Z&quot;</span>,
-  <span class="hljs-string">&quot;lastUsed&quot;</span>: <span class="hljs-string">&quot;2015-05-18T13:18:48.181Z&quot;</span>
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;DATA_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;&lt;OWNER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;&lt;USER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;created&quot;</span>: <span class="hljs-string">&quot;ISO8601DATE&quot;</span>,
+    <span class="hljs-string">&quot;lastUpdated&quot;</span>: <span class="hljs-string">&quot;ISO8601DATE&quot;</span>,
+    <span class="hljs-string">&quot;project&quot;</span>: <span class="hljs-string">&quot;&lt;PROJECT_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;sheet&quot;</span>: <span class="hljs-string">&quot;&lt;SHEET_NAME&gt;&quot;</span>,
+    <span class="hljs-string">&quot;record&quot;</span>: {
+        <span class="hljs-string">&quot;&lt;FIELD_NAME&gt;&quot;</span>: <span class="hljs-string">&quot;&lt;FIELD_VALUE&quot;</span>,
+        ...
+    },
+    <span class="hljs-string">&quot;device&quot;</span>: {
+        <span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-string">&quot;&lt;DEVICE_ID&gt;&quot;</span>,
+        <span class="hljs-string">&quot;model&quot;</span>:<span class="hljs-string">&quot;&lt;DEVICE_MODEL&gt;&quot;</span>
+    }
 }
 </code></pre>
-</blockquote>
-<h2 id="%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90masterkey">&#x91CD;&#x65B0;&#x751F;&#x6210;MasterKey</h2>
-<p>&#x8BF7;&#x6C42;:</p>
-<blockquote>
-<p>GET /api/users/me/createmasterkey?api_key=MASTER_KEY HTTP/1.1
-&#x5931;&#x8D25;, &#x8FD4;&#x56DE;:
-HTTP/1.1 401 Unauthorized</p>
-</blockquote>
-<p>&#x6210;&#x529F;, &#x8FD4;&#x56DE;:</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
-<pre><code class="lang-json">{
-    <span class="hljs-string">&quot;masterKey&quot;</span>: <span class="hljs-string">&quot;asd9fadifjaqw9asdfasdf939&quot;</span>
-}
-</code></pre>
-</blockquote>
 
                     
                     </section>
@@ -417,10 +387,10 @@ HTTP/1.1 401 Unauthorized</p>
         </div>
 
         
-        <a href="../app/auth.html" class="navigation navigation-prev " aria-label="Previous page: 用户认证"><i class="fa fa-angle-left"></i></a>
+        <a href="../obj/proj.html" class="navigation navigation-prev " aria-label="Previous page: 项目对象格式"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../app/proj.html" class="navigation navigation-next " aria-label="Next page: 项目管理"><i class="fa fa-angle-right"></i></a>
+        <a href="../obj/app.html" class="navigation navigation-next " aria-label="Next page: 应用对象格式"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

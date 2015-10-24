@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>应用开发手册 | 开发手册</title>
+        <title>系统调用接口 | 开发手册</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="1" data-basepath=".." data-revision="Tue Oct 20 2015 21:40:04 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="1" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -84,7 +84,7 @@
                         
                             <b>1.</b>
                         
-                        应用开发手册
+                        系统调用接口
                     </a>
             
             
@@ -136,16 +136,16 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="app/coll.html">
+        <li class="chapter " data-level="1.4" data-path="app/data.html">
             
                 
-                    <a href="../app/coll.html">
+                    <a href="../app/data.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>1.4.</b>
                         
-                        集合管理
+                        记录表单数据
                     </a>
             
             
@@ -161,6 +161,87 @@
                             <b>1.5.</b>
                         
                         应用管理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="obj/index.html">
+            
+                
+                    <a href="../obj/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        对象格式说明
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="obj/user.html">
+            
+                
+                    <a href="../obj/user.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        用户对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="obj/proj.html">
+            
+                
+                    <a href="../obj/proj.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        项目对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="obj/data.html">
+            
+                
+                    <a href="../obj/data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        表单数据格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="obj/app.html">
+            
+                
+                    <a href="../obj/app.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        应用对象格式
                     </a>
             
             
@@ -277,8 +358,8 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="%E5%88%86%E6%9E%90%E4%BA%91%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C">&#x5206;&#x6790;&#x4E91;&#x5E94;&#x7528;&#x5F00;&#x53D1;&#x624B;&#x518C;</h1>
-<p>&#x5206;&#x6790;&#x4E91;&#x5E94;&#x7528;RESTFUL&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x8BF4;&#x660E;&#x3002;</p>
+                        <h1 id="%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3">&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x63A5;&#x53E3;</h1>
+<p>&#x5206;&#x6790;&#x4E91;RESTFUL&#x670D;&#x52A1;&#x8C03;&#x7528;&#x63A5;&#x53E3;&#x8BF4;&#x660E;&#x3002;</p>
 <h1 id="jsonp-callback">JSONP callback</h1>
 <p>You can give any request a &quot;callback&quot; request parameter to encapsulate the result json as function call - that is, jsonp.</p>
 <h1 id="authentication">Authentication</h1>
@@ -309,10 +390,9 @@
 <p>Generate a scoped key<br>  There&apos;s no way to generate a scoped key at present.</p>
 </blockquote>
 <h1 id="errors">Errors</h1>
-<h2 id="200-event-accepted">200: Event accepted</h2>
-<pre><code>Note: Check the response body for individual event statuses. Some or all may have failed.
-</code></pre><h2 id="201-event-created-successfully">201: Event created successfully</h2>
-<h2 id="400-bad-request">400: Bad Request</h2>
+<h2 id="200-ok">200: OK</h2>
+<pre><code>Note: Check the response body for individual statuses. Some or all may have failed.
+</code></pre><h2 id="400-bad-request">400: Bad Request</h2>
 <pre><code>Missing or invalid parameters. Error messages will often contain more information to help
 you figure out what&#x2019;s wrong.
 </code></pre><h2 id="401-unauthorized">401: Unauthorized</h2>

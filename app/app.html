@@ -33,8 +33,10 @@
         
     
     
+    <link rel="next" href="../obj/index.html" />
     
-    <link rel="prev" href="../app/coll.html" />
+    
+    <link rel="prev" href="../app/data.html" />
     
 
         
@@ -42,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath=".." data-revision="Tue Oct 20 2015 21:40:04 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="1.5" data-basepath=".." data-revision="Sat Oct 24 2015 10:55:50 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -82,7 +84,7 @@
                         
                             <b>1.</b>
                         
-                        应用开发手册
+                        系统调用接口
                     </a>
             
             
@@ -134,16 +136,16 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="app/coll.html">
+        <li class="chapter " data-level="1.4" data-path="app/data.html">
             
                 
-                    <a href="../app/coll.html">
+                    <a href="../app/data.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>1.4.</b>
                         
-                        集合管理
+                        记录表单数据
                     </a>
             
             
@@ -159,6 +161,87 @@
                             <b>1.5.</b>
                         
                         应用管理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="obj/index.html">
+            
+                
+                    <a href="../obj/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        对象格式说明
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="obj/user.html">
+            
+                
+                    <a href="../obj/user.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        用户对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="obj/proj.html">
+            
+                
+                    <a href="../obj/proj.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        项目对象格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="obj/data.html">
+            
+                
+                    <a href="../obj/data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        表单数据格式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="obj/app.html">
+            
+                
+                    <a href="../obj/app.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        应用对象格式
                     </a>
             
             
@@ -286,27 +369,26 @@
 <p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
 <pre><code class="lang-json">[{
     <span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-string">&quot;&lt;APPLICATION_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;owner&quot;</span>:<span class="hljs-string">&quot;&lt;OWNER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;&lt;USER_ID&gt;&quot;</span>,
     <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;&#x5065;&#x8EAB;&#x623F;&#x7BA1;&#x7406;&quot;</span>,
     <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
     <span class="hljs-string">&quot;entries&quot;</span> : [{
         <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;&#x8F93;&#x5165;&#x6559;&#x7EC3;&#x4FE1;&#x606F;&quot;</span>,
         <span class="hljs-string">&quot;icon&quot;</span> : <span class="hljs-string">&quot;url1&quot;</span>,
         <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
-        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_ID&gt;&quot;</span>
+        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_NAME&gt;&quot;</span>
     }, {
         <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;&#x8F93;&#x5165;&#x5B66;&#x5458;&#x4FE1;&#x606F;&quot;</span>,
         <span class="hljs-string">&quot;icon&quot;</span> : <span class="hljs-string">&quot;url2&quot;</span>,
         <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
-        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_ID&gt;&quot;</span>
+        <span class="hljs-string">&quot;sheet&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_NAME&gt;&quot;</span>
     }],
     <span class="hljs-string">&quot;sheets&quot;</span> : [{
-        <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_ID&gt;&quot;</span>,
-        <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
         <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;sheet1&quot;</span>,
-        <span class="hljs-string">&quot;items&quot;</span> : [{
-          <span class="hljs-string">&quot;id&quot;</span> <span class="hljs-string">&quot;&lt;ITEM_ID&gt;&quot;</span>,
+        <span class="hljs-string">&quot;fields&quot;</span> : [{
+          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;field&quot;</span>,
           <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>,
-          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;item title&quot;</span>,
           <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
           <span class="hljs-string">&quot;format&quot;</span> : <span class="hljs-string">&quot;format&quot;</span>,
           <span class="hljs-string">&quot;default&quot;</span> : {
@@ -335,6 +417,8 @@
 <p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
 <pre><code class="lang-json">{
     <span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-string">&quot;&lt;APPLICATION_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;owner&quot;</span>:<span class="hljs-string">&quot;&lt;OWNER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;&lt;USER_ID&gt;&quot;</span>,
     <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;&#x5065;&#x8EAB;&#x623F;&#x7BA1;&#x7406;&quot;</span>,
     <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
     <span class="hljs-string">&quot;entries&quot;</span> : [{
@@ -350,12 +434,11 @@
     }],
     <span class="hljs-string">&quot;sheets&quot;</span> : [{
         <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_ID&gt;&quot;</span>,
-        <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
         <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;sheet1&quot;</span>,
-        <span class="hljs-string">&quot;items&quot;</span> : [{
-          <span class="hljs-string">&quot;id&quot;</span> <span class="hljs-string">&quot;&lt;ITEM_ID&gt;&quot;</span>,
+        <span class="hljs-string">&quot;fields&quot;</span> : [{
+          <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;FIELD_ID&gt;&quot;</span>,
+          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;field title&quot;</span>,
           <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>,
-          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;item title&quot;</span>,
           <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
           <span class="hljs-string">&quot;format&quot;</span> : <span class="hljs-string">&quot;format&quot;</span>,
           <span class="hljs-string">&quot;default&quot;</span> : {
@@ -385,6 +468,8 @@
 <p>HTTP/1.1 200 OK<br>Content-Type: application/json; charset=utf-8  </p>
 <pre><code class="lang-json">{
     <span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-string">&quot;&lt;APPLICATION_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;owner&quot;</span>:<span class="hljs-string">&quot;&lt;OWNER_ID&gt;&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;&lt;USER_ID&gt;&quot;</span>,
     <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;&#x5065;&#x8EAB;&#x623F;&#x7BA1;&#x7406;&quot;</span>,
     <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
     <span class="hljs-string">&quot;entries&quot;</span> : [{
@@ -400,12 +485,11 @@
     }],
     <span class="hljs-string">&quot;sheets&quot;</span> : [{
         <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;SHEET_ID&gt;&quot;</span>,
-        <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;sheet&quot;</span>,
         <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;sheet1&quot;</span>,
-        <span class="hljs-string">&quot;items&quot;</span> : [{
-          <span class="hljs-string">&quot;id&quot;</span> <span class="hljs-string">&quot;&lt;ITEM_ID&gt;&quot;</span>,
+        <span class="hljs-string">&quot;fields&quot;</span> : [{
+          <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;&lt;FIELD_ID&gt;&quot;</span>,
+          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;field title&quot;</span>,
           <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>,
-          <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;item title&quot;</span>,
           <span class="hljs-string">&quot;description&quot;</span> : <span class="hljs-string">&quot;description&quot;</span>,
           <span class="hljs-string">&quot;format&quot;</span> : <span class="hljs-string">&quot;format&quot;</span>,
           <span class="hljs-string">&quot;default&quot;</span> : {
@@ -453,8 +537,10 @@
         </div>
 
         
-        <a href="../app/coll.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 集合管理"><i class="fa fa-angle-left"></i></a>
+        <a href="../app/data.html" class="navigation navigation-prev " aria-label="Previous page: 记录表单数据"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../obj/index.html" class="navigation navigation-next " aria-label="Next page: 对象格式说明"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
