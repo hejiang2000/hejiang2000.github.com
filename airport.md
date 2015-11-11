@@ -49,6 +49,7 @@
    * 查询结果以表格形式显示
    
 ### Role 3：系统管理人员
+暂不开发。
 
 1. 使用PC机浏览器操作
 
@@ -108,7 +109,7 @@ APP设计
 
 ### Page 3. 修改密码页面
 
-1. 显示登录页面
+1. 显示修改密码页面
 1. 两次输入新密码，确认两次密码输入一致
 1. 调用修改密码API，更新密码
 
@@ -122,15 +123,37 @@ WEB设计
 
 ### Page 1. WEB登录页面
 
+1. 显示登录页面
+2. 输入用户名，密码
+3. 调用登录API，获取masterKey
+
 ### Page 2. 全部登机桥状态页面
+
+1. 调用获取登机桥当前状态API
+1. 显示航班信息通知(状态)和登机桥状态页面
+1. 收到状态更新，更新显示状态: 有timeout状态，发出声音提示
+1. 单击登机桥通知状态，显示提示框。如果有timeout状态, 增加“已处理”按钮
+1. 用户单击“已处理”按钮，调用确认API
 
 ### Page 3. AODB数据查询页面
 
+1. 显示查询条件输入框，和结果表格
+1. 对于已输入条件，调用AODB查询API
+1. 在结果表格中显示查询结果
+
 ### Page 4. 登机桥工作人员管理页面
+
+1. 暂不开发, 手工维护数据
 
 ### Page 5. 登机桥排班管理页面
 
+1. 暂不开发, 手工维护数据
+
 ### Page 6. 修改密码页面
+
+1. 显示修改密码页面
+1. 两次输入新密码，确认两次密码输入一致
+1. 调用修改密码API，更新密码
 
 服务接口
 --------
@@ -180,7 +203,7 @@ WEB设计
 
 ### 3. 登机桥当前状态API
 请求:
-> GET /api/bridges?api_key=MASTER_KEY HTTP/1.1
+> GET /api/status?api_key=MASTER_KEY HTTP/1.1
 
 获取失败, 返回:
 > HTTP/1.1 401 Unauthorized
@@ -202,7 +225,7 @@ WEB设计
 
 ### 4. 通知和状态更新API
 请求:
-> GET /api/notifications?api_key=MASTER_KEY HTTP/1.1
+> GET /api/status/new?api_key=MASTER_KEY HTTP/1.1
 
 获取失败, 返回:
 > HTTP/1.1 401 Unauthorized
@@ -233,7 +256,7 @@ WEB设计
 
 ### 5. 消息确认API
 请求:
-> POST /api/messages/confirm?api_key=MASTER_KEY HTTP/1.1
+> PUT /api/status?api_key=MASTER_KEY HTTP/1.1
 > Content-Type: application/json; charset=utf-8  
 ```json
 {
@@ -254,4 +277,28 @@ WEB设计
 
 确认成功, 返回:
 > HTTP/1.1 200 OK  
+
+### 6. AODB查询API
+> POST /api/status?api_key=MASTER_KEY HTTP/1.1
+> Content-Type: application/json; charset=utf-8  
+```json
+{
+    flightNo: "MU1372"
+}
+```
+
+查询失败, 返回:
+> HTTP/1.1 401 Unauthorized
+
+查询成功, 返回:
+> HTTP/1.1 200 OK  
+> Content-Type: application/json; charset=utf-8  
+```json
+{
+    data: [{
+        flightNo: "MU1372",
+        //...
+    }]
+}
+```
 
