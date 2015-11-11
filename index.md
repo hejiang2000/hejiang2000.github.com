@@ -1,5 +1,5 @@
 
-MyAPP工作室
-===========
+MyAPP Studio
+============
 
-快速开发各种APP。
+MyAPP studio.
