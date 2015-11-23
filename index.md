@@ -1,5 +1,0 @@
-
-MyAPP Studio
-============
-
-MyAPP studio.
