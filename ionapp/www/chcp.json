@@ -1,0 +1,8 @@
+{
+  "name": "ionapp",
+  "ios_identifier": "ionapp",
+  "android_identifier": "ionapp",
+  "update": "start",
+  "content_url": "http://localhost:8100/",
+  "release": "2017.12.05-23.26.18"
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "file": "assets/data/data.json",
+    "hash": "fdd3f45e0e8fe55648aca93f20e48d27"
+  },
+  {
+    "file": "assets/fonts/ionicons.eot",
+    "hash": "bdf1d30681cf87986c385eea78e8de9a"
+  },
+  {
+    "file": "assets/fonts/ionicons.scss",
+    "hash": "c1fdfabf9cbd412b444f064d27641f10"
+  },
+  {
+    "file": "assets/fonts/ionicons.svg",
+    "hash": "d9496a234c81179afbca6bf5959cc30a"
+  },
+  {
+    "file": "assets/fonts/ionicons.ttf",
+    "hash": "74c652671225d6ded874a648502e5f0a"
+  },
+  {
+    "file": "assets/fonts/ionicons.woff",
+    "hash": "81414686e99c00d2921e03dd53c0ab04"
+  },
+  {
+    "file": "assets/fonts/ionicons.woff2",
+    "hash": "311d81961c5880647fec7eaca1221b2a"
+  },
+  {
+    "file": "assets/fonts/noto-sans-bold.ttf",
+    "hash": "a165a42685795361b25593effb32fdb1"
+  },
+  {
+    "file": "assets/fonts/noto-sans-bold.woff",
+    "hash": "ce3d777f2c41cca1494021cfa3fcd72c"
+  },
+  {
+    "file": "assets/fonts/noto-sans-regular.ttf",
+    "hash": "2fd9c16b805724d590c0cff96da070a4"
+  },
+  {
+    "file": "assets/fonts/noto-sans-regular.woff",
+    "hash": "ce8ba1a4ff970db896192c41fc3c96b1"
+  },
+  {
+    "file": "assets/fonts/noto-sans.scss",
+    "hash": "47d5f7264952ccee8cead7b6dcb6d1bd"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.ttf",
+    "hash": "1f4fd7e4df65487f07ba9148f7ca095d"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.woff",
+    "hash": "43183beef21370d8a4b0d64152287eba"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.woff2",
+    "hash": "28d80f43ae4cc35f19e1f1a6ab670f25"
+  },
+  {
+    "file": "assets/fonts/roboto-light.ttf",
+    "hash": "9ff15bd34ea83e4dd3f23c20c7f5090e"
+  },
+  {
+    "file": "assets/fonts/roboto-light.woff",
+    "hash": "7e2d32e7141050d758a38b4ec96390c0"
+  },
+  {
+    "file": "assets/fonts/roboto-light.woff2",
+    "hash": "a826ff848e9f52b1732fed7d154afa97"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.ttf",
+    "hash": "a937e2cae14e68262a45aa91204c2fdf"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.woff",
+    "hash": "0f3b7101a8adc1afe1fbe89775553c32"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.woff2",
+    "hash": "b2c9c262e089411e20689ed393c00796"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.ttf",
+    "hash": "07f8fb6acbabeb10d3fad9ab02d65e0b"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.woff",
+    "hash": "f94d5e5102359961c44a1da1b58d37c9"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.woff2",
+    "hash": "e6b9d54811307f98da62eae992ae05ba"
+  },
+  {
+    "file": "assets/fonts/roboto.scss",
+    "hash": "e7c30075bc0f0b11422bfbdb2236f9e7"
+  },
+  {
+    "file": "assets/img/appicon.png",
+    "hash": "9890c4f1cebdaa75a6204379497694d8"
+  },
+  {
+    "file": "assets/img/appicon.svg",
+    "hash": "fb2e495712b180413a864ef9f7749b52"
+  },
+  {
+    "file": "assets/img/ica-slidebox-img-1.png",
+    "hash": "0639ae9e496bb221173f4241d5c2a844"
+  },
+  {
+    "file": "assets/img/ica-slidebox-img-2.png",
+    "hash": "170d2b6c7f7d50ac5a404200ed8990f6"
+  },
+  {
+    "file": "assets/img/ica-slidebox-img-3.png",
+    "hash": "d2e95c2bdb390a5ca97bc61d6f0e52d5"
+  },
+  {
+    "file": "assets/img/ica-slidebox-img-4.png",
+    "hash": "4fef19a556a09bd301dd53cfd6a9f44b"
+  },
+  {
+    "file": "assets/img/ionic-logo-white.svg",
+    "hash": "ef0c7f122a446b07a69d739af3b98173"
+  },
+  {
+    "file": "assets/img/speakers/bear.jpg",
+    "hash": "4ab93f4b7644ee1e46c16afcc09c7dca"
+  },
+  {
+    "file": "assets/img/speakers/cheetah.jpg",
+    "hash": "ac95258498c6ac5655931b64360614e4"
+  },
+  {
+    "file": "assets/img/speakers/duck.jpg",
+    "hash": "80543f1f0e5e55790d4a6ac266fb6ef5"
+  },
+  {
+    "file": "assets/img/speakers/eagle.jpg",
+    "hash": "97a83b83a60cbdc5219a55c3d46593fd"
+  },
+  {
+    "file": "assets/img/speakers/elephant.jpg",
+    "hash": "cc4b6ea27af3f3cbe22cf7af875d6f14"
+  },
+  {
+    "file": "assets/img/speakers/giraffe.jpg",
+    "hash": "be5d56d40e2b75150308b7ba0ea80d7e"
+  },
+  {
+    "file": "assets/img/speakers/iguana.jpg",
+    "hash": "075b2628f1030c6411638dd964d0cc13"
+  },
+  {
+    "file": "assets/img/speakers/kitten.jpg",
+    "hash": "69e8b807d8e83553b98b768a69e464cd"
+  },
+  {
+    "file": "assets/img/speakers/lion.jpg",
+    "hash": "b4d051a0b09591ed0c4f909565df1274"
+  },
+  {
+    "file": "assets/img/speakers/mouse.jpg",
+    "hash": "41bc6a1ea2feb52b9b975d0fa32bcee5"
+  },
+  {
+    "file": "assets/img/speakers/puppy.jpg",
+    "hash": "2f04f1b2be6bdb7eab777ad78aaceb43"
+  },
+  {
+    "file": "assets/img/speakers/rabbit.jpg",
+    "hash": "84ecb1a1886aa9df5f06fcba50ad839b"
+  },
+  {
+    "file": "assets/img/speakers/turtle.jpg",
+    "hash": "49040cbdf64bb4b41dfbf013a3694187"
+  },
+  {
+    "file": "build/main.css",
+    "hash": "e1134f3b77a79e328042ba0a1f6ab840"
+  },
+  {
+    "file": "build/main.css.map",
+    "hash": "37a6259cc0c1dae299a7866489dff0bd"
+  },
+  {
+    "file": "build/main.js",
+    "hash": "4c5a5509e81ee8828722ef960f774757"
+  },
+  {
+    "file": "build/main.js.map",
+    "hash": "e39e6b88ef808a289fefd8570bd24237"
+  },
+  {
+    "file": "build/polyfills.js",
+    "hash": "443c697fc904cd88a651d09cf5c2fe2b"
+  },
+  {
+    "file": "build/sw-toolbox.js",
+    "hash": "2770efb889cc10c4de88d0b746c2a13c"
+  },
+  {
+    "file": "build/vendor.js",
+    "hash": "41ab56a021f7b0e2e5cffabc9913680f"
+  },
+  {
+    "file": "build/vendor.js.map",
+    "hash": "dcebc8aee683112eaf9922700ef42a51"
+  },
+  {
+    "file": "index.html",
+    "hash": "bbddaac39d48265a8e94ae288da550a1"
+  },
+  {
+    "file": "manifest.json",
+    "hash": "4f44b601a2823de048864d5b4f4a1d1e"
+  },
+  {
+    "file": "service-worker.js",
+    "hash": "ea7d3ae06d88a849ac03dba0f4c0442a"
+  }
+]
