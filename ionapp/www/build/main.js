@@ -40,10 +40,15 @@ var AboutPage = (function () {
         var chcp = window['chcp'];
         chcp && chcp.fetchUpdate(function (error /*, data*/) {
             if (error) {
-                _this.showAlert("更新失败", error.description);
+                if (error.code === chcp.error.NOTHING_TO_UPDATE) {
+                    _this.showAlert("检查更新完成", "当前已是最新版本，不需要更新。");
+                }
+                else {
+                    _this.showAlert("应用更新失败", error.description);
+                }
             }
             else {
-                _this.showAlert("更新完成", "系统已更新。");
+                _this.showAlert("应用更新完成", "应用已更新至最新版本。");
             }
         });
     };
