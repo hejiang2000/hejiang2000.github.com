@@ -44,7 +44,7 @@ var AboutPage = (function () {
                     _this.showAlert("检查更新完成", "当前已是最新版本，不需要更新。");
                 }
                 else {
-                    _this.showAlert("应用更新失败", error.description);
+                    _this.showAlert("应用更新失败", error.description + "(" + error.code + ")");
                 }
             }
             else {
