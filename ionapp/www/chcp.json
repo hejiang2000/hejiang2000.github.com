@@ -3,6 +3,6 @@
   "ios_identifier": "ionapp",
   "android_identifier": "ionapp",
   "update": "start",
-  "content_url": "http://localhost:8100/",
-  "release": "2017.12.05-23.26.18"
+  "content_url": "http://hejiang2000.github.io/ionapp/www/",
+  "release": "2017.12.07-00.20.56"
 }
