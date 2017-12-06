@@ -189,11 +189,11 @@
   },
   {
     "file": "build/main.js",
-    "hash": "5d19394b3a0cdd3492373c668fb04744"
+    "hash": "99b09496f664c06f7c12e6601276f5a0"
   },
   {
     "file": "build/main.js.map",
-    "hash": "b95d87e479eb5e64050cc0133c885a23"
+    "hash": "f164cdc8ba6c922724d9f5d4d98960dd"
   },
   {
     "file": "build/polyfills.js",
@@ -209,7 +209,7 @@
   },
   {
     "file": "build/vendor.js.map",
-    "hash": "a6ce077dd5a3f35375e363eaf268f46d"
+    "hash": "176038a8a68202a4c8992b7701a8e640"
   },
   {
     "file": "index.html",
