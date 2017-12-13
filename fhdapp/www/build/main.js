@@ -230,7 +230,7 @@ var SchedulePage = (function () {
         loading.present();
     };
     SchedulePage.prototype.download = function (session) {
-        this.inAppBrowser.create(session.location, '_blank', 'location=yes,toolbarposition=top,closebuttoncaption=返回');
+        this.inAppBrowser.create(session.location, '_blank', 'location=no,toolbarposition=top,closebuttoncaption=返回');
     };
     SchedulePage.prototype.favorite = function () {
     };

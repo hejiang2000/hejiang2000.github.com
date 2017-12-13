@@ -1,8 +1,0 @@
-{
-  "name": "ionapp",
-  "ios_identifier": "ionapp",
-  "android_identifier": "ionapp",
-  "update": "start",
-  "content_url": "http://hejiang2000.github.io/ionapp/www",
-  "release": "2017.12.07-22.51.38"
-}
