@@ -1,7 +1,7 @@
 [
   {
     "file": "assets/data/data.json",
-    "hash": "fdd3f45e0e8fe55648aca93f20e48d27"
+    "hash": "b5401dc6e020a2a9f391de1d846dd666"
   },
   {
     "file": "assets/fonts/ionicons.eot",
@@ -181,7 +181,7 @@
   },
   {
     "file": "build/main.css",
-    "hash": "e1134f3b77a79e328042ba0a1f6ab840"
+    "hash": "ef8846ea983cc6e4778afe96284d0d93"
   },
   {
     "file": "build/main.css.map",
@@ -189,11 +189,11 @@
   },
   {
     "file": "build/main.js",
-    "hash": "77536de17572dcaadc0728259836fe7d"
+    "hash": "4712017eae0608302cf1c197caa59668"
   },
   {
     "file": "build/main.js.map",
-    "hash": "662b78ab7cd927f306702ad9f2f98d86"
+    "hash": "5f5fcdd10952806ed26026d65a274dba"
   },
   {
     "file": "build/polyfills.js",
@@ -205,15 +205,15 @@
   },
   {
     "file": "build/vendor.js",
-    "hash": "bd2b456093462bfa4f8e3a8afd216b2b"
+    "hash": "6bceeb95fd69b11d3b6e44528119def6"
   },
   {
     "file": "build/vendor.js.map",
-    "hash": "9708bf20fdacf4c35bd740a15afa12d6"
+    "hash": "cedcb3cc120dca85301e306d7bc58020"
   },
   {
     "file": "index.html",
-    "hash": "bbddaac39d48265a8e94ae288da550a1"
+    "hash": "01431a71117767b78ceffbb90d366f72"
   },
   {
     "file": "manifest.json",

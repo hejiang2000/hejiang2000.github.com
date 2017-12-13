@@ -3,17 +3,18 @@
   "schedule": [{
     "date": "2047-05-17",
     "groups": [{
-      "time": "8:00 am",
+      "time": "2017-12-13 更新",
       "sessions": [{
-        "name": "Breakfast",
-        "timeStart": "8:00 am",
-        "timeEnd": "9:00 am",
-        "location": "Main hallway",
+        "name": "Apache Kafka 1.0 官网文档 (英语)",
+        "timeStart": "",
+        "timeEnd": "",
+        "location": "http://kafka.apache.org/10/documentation.html",
+        "description": "Apache Kafka® 是广泛使用的分布式流数据平台。",
         "tracks": ["Food"],
         "id": "1"
       }]
     }, {
-      "time": "9:15 am",
+      "time": "2017-12-05 更新",
       "sessions": [{
         "name": "Introduction to Appcamp.io",
         "location": "Room 2203",
@@ -43,10 +44,10 @@
         "id": "4"
       }]
     }, {
-      "time": "10:00 am",
+      "time": "2017-11-30 更新",
       "sessions": [{
-        "name": "Migrating to Ionic2",
-        "location": "Room 2201",
+        "name": "Apache Hadoop 2.9.0 官网文档 (英语)",
+        "location": "http://hadoop.apache.org/docs/r2.9.0/index.html",
         "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
         "speakerNames": ["Eva Eagle", "Lionel Lion"],
         "timeStart": "10:00 am",
