@@ -8,4 +8,4 @@ python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\csv\%%~ni.csv
 
 del /Q D:\hengrui\hejiang2000.github.com\tmp\xls\*.xls
 
-rem start D:\hengrui\hejiang2000.github.com\tmp\marker.xlsm
+start D:\hengrui\hejiang2000.github.com\tmp\marker.xlsm
