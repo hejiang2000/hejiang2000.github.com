@@ -7,5 +7,7 @@ python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\csv\%%~ni.csv
 )
 
 del /Q D:\hengrui\hejiang2000.github.com\tmp\xls\*.xls
+del /Q D:\hengrui\hejiang2000.github.com\tmp\buy\*.xls
+del /Q D:\hengrui\hejiang2000.github.com\tmp\sell\*.xls
 
 start D:\hengrui\hejiang2000.github.com\tmp\marker.xlsm
