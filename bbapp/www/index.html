@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="dengjiqiao">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+	<!-- <script src="lib/jquery-2.2.1/jquery.min.js"></script> -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="js/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+     <!-- your app's js -->
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/html.js"></script>
+
+    <!--http://github.com/suifengtec/AngularJS-Baidu-Map/-->
+    <!--<script src="js/angularjs-baidu-map.js"></script>-->
+    <!--大众版-->
+    <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=HumGuK48Lis3kPdlHZBxvbvsqgHySljX"> </script>-->
+    <!--加速版-->
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=LhoOd7P3O04prVIAIi5HuWjb&v=1.0"></script>-->
+  </head>
+
+  <body>
+  <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+  <script id="templates/sign-in.html" type="text/ng-template">
+    <ion-view>
+      <ion-header-bar class="bar-dark" align-title="center">
+            <h1 class="title">登录</h1>
+       </ion-header-bar>
+      <ion-content cache-view='false'>
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">用户名</span>
+            <input type="text" ng-model="user.username">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">密  码</span>
+            <input type="password" ng-model="user.password">
+          </label>
+        </div>
+        <div class="padding">
+          <button class="button button-block button-balanced" ng-click="signIn(user)">
+            立即登录
+          </button>
+        </div>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="templates/change-password.html" type="text/ng-template">
+    <ion-view>
+     <ion-header-bar class="bar-calm" align-title="center">
+        <div class="rj-page-title"> 重庆江北机场BBMS账号管理系统</div>
+      </ion-header-bar>
+      <ion-content cache-view='false' class="rj-changeuser">
+        <br/>
+        <ion-list>
+          <ion-item class="item-remove-animate rj-list" type="item-text-wrap">
+            <span>{{"姓 名："+chats.name}}</span>
+          </ion-item>
+          <ion-item class="item-remove-animate rj-list" type="item-text-wrap">
+            <span>{{"手 机 号："+chats.Phone_Number}}</span>
+          </ion-item>
+          <ion-item class="item-remove-animate rj-list" type="item-text-wrap">
+            <span>{{"身份证号："+chats.IDcardNo}}</span>
+          </ion-item>
+          <ion-item class="item-remove-animate rj-list" type="item-text-wrap">
+            <span>{{"工    号："+chats.jobnumber}}</span>
+          </ion-item>
+        </ion-list>
+        <br/>
+             <br/>
+        <br>
+        <div class="padding">
+          <!--<button class="button button-block button-stable" ui-sref="signin"  ng-click="quit">-->
+          <button class="button button-block button-stable" ng-click="doaquit(chats)"  >
+            返回登录
+          </button>
+        </div>
+        <br/>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="templates/tabs.html" type="text/ng-template">
+    <ion-view>
+      <ion-tabs class="tabs-icon-top tabs-color-active-balanced">
+        <ion-tab title="主页" icon="ion-home" href="#/tab/home">
+          <ion-nav-view name="tabs-home"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="出港航班" icon-on="ion-android-plane" icon-off="ion-android-plane" href="#/tab/flight">
+          <ion-nav-view name="tabs-flight"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="登机桥信息" icon-on="ion-ios-paperplane" icon-off="ion-ios-paperplane-outline" href="#/tab/bridge">
+          <ion-nav-view name="tabs-bridge"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="我的" icon="ion-information"  href="#/tab/change-password">
+          <ion-nav-view name="password-tab"></ion-nav-view>
+        </ion-tab>
+
+      </ion-tabs>
+    </ion-view>
+  </script>
+
+
+
+
+
+
+
+  </body>
+</html>
