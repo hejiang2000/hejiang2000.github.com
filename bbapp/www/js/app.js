@@ -198,7 +198,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         };
     })
 
-    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $http, locals, apiContext) {
+    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $http, $cordovaProgress, locals, apiContext) {
         $scope.$on('$ionicView.enter', function () {
             $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
                 $scope.chats = rs.data.data[0][0];
@@ -226,7 +226,10 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
         // 检查更新
         $scope.checkUpdate = function () {
+            $cordovaProgress.showBar(true, 100000, "正在更新...");
             window.chcp && window.chcp.fetchUpdate(function (error, data) {
+                $cordovaProgress.hide();
+
                 var title = "软件更新";
                 var message = null;
 
