@@ -327,6 +327,8 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
             $q.all([d1.promise, d2.promise]).then(function () {
                 if ($rootScope.polling) {
                     timer = $timeout(update, 2000);
+                } else {
+                    timer = null;
                 }
             });
         }
@@ -340,7 +342,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         });
 
         $scope.$on('$ionicView.enter', function () {
-            if (!$rootScope.polling) {
+            if (!$rootScope.polling || !timer) {
                 $rootScope.polling = true;
                 update();
             }
