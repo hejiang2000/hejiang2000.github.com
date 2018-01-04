@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
             $http.get(apiContext + "/api/bb/home/depflight").then(function (rs) {
                 console.log(rs);
                 $scope.chats = rs.data.data[0];
-            }).finally(function() {
+            }).finally(function () {
                 if ($rootScope.polling) {
                     timer = $timeout(update, 5000);
                 }
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 
         var timer = null;
 
-        $scope.$on("$destroy", function($event) {
+        $scope.$on("$destroy", function ($event) {
             timer && $timeout.cancel(timer);
             timer = null;
         });

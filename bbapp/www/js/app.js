@@ -207,7 +207,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         };
     })
 
-    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, $http, $cordovaProgress, locals, apiContext) {
+    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, $http, $cordovaProgress, $cordovaBarcodeScanner, locals, apiContext) {
         $scope.$on('$ionicView.enter', function () {
             $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
                 $scope.chats = rs.data.data[0][0];
@@ -282,6 +282,11 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
             my_media.play();
         }
+
+        // 测试扫码
+        $scope.testScanBarcode = function() {
+            $cordovaBarcodeScanner.scan();
+        }
     })
 
     .controller('TodayCtrl', function ($scope, $rootScope, $q, $state, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext) {
@@ -335,7 +340,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
         var timer = null;
 
-        $scope.$on("$destroy", function($event) {
+        $scope.$on("$destroy", function ($event) {
             $rootScope.polling = false;
             timer && $timeout.cancel(timer);
             timer = null;
