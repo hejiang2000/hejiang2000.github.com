@@ -234,7 +234,6 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     $state.go('signin');
                 } else {
                     console.log('You are not sure');
-                    navigator.vibrate && navigator.vibrate(300);
                 }
             });
         }
@@ -263,6 +262,25 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     template: message
                 });
             });
+        }
+
+        // 测试震动
+        $scope.testVibrate = function () {
+            navigator.vibrate && navigator.vibrate(300);
+        }
+
+        // 测试播放音乐
+        $scope.testPlayMusic = function () {
+            srcFile = '/android_asset/www/media/music.mp3';
+            var my_media = new Media(srcFile, function () {
+                    console.log("playAudio():Audio Success");
+                },
+                function (err) {
+                    console.log("playAudio():Audio Error: " + err);
+                }
+            );
+
+            my_media.play();
         }
     })
 
