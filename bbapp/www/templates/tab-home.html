@@ -1,0 +1,40 @@
+<ion-header-bar class="bar-calm" align-title="left">
+  <div class="h1 title">重庆江北机场</div>
+  <div class="buttons">
+    <button class="button no-animation button-icon icon ion-android-search" ui-sref="tabs.Search">
+    </button>
+  </div>
+</ion-header-bar>
+
+<ion-content>
+  <h4 class="rj-home-subtitle">今日工作</h4>
+    <ion-list>
+      <ion-item class="rj-list" type="item-text-wrap">
+              <span class="rj-bridge">{{"登机桥"}}</span>
+              <span class="rj-flight">{{"航班号"}}</span>
+              <span class="rj-time">{{"任务时间"}}</span>
+              <span class="rj-state">{{"进港状态"}}</span>
+              <span class="rj-state">{{"到位"}}</span>
+      </ion-item>
+  <ion-scroll style="width: 500px; height:205px">
+      <ion-item class="rj-list" ng-repeat="chat in chats" type="item-text-wrap">
+              <span class="rj-bridge">{{chat.Bridge_Code}}</span>
+              <span class="rj-flight">{{chat.Flight_Number}}</span>
+              <span class="rj-time">{{chat.Time|date:"HH:mm:ss"}}</span>
+              <span class="rj-state">{{chat.Flight_State}}</span>
+              <button class="button button-positive button-small rj-list-button" ng-if="chat.NeedConfirm == 1" ng-click="popupMessageOpthins(chat)">到位</button>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+
+  <h4 class="rj-home-subtitle">确认信息</h4>
+  <ion-scroll style="width: 400px; height:165px">
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="chat in texts" type="item-text-wrap" ng-if="chat.AlertStatus==0" href="#/chats/{{chat.ID}}">
+        <h2>{{chat.Message}}</h2>
+       </ion-item>
+      <ion-item class="item-icon-right" ng-repeat="chat in texts"  ng-if="chat.AlertStatus!=0">
+        <h2 class="rj-confirm">{{chat.Message}}</h2>
+    </ion-list>
+  </ion-scroll>
+</ion-content>
