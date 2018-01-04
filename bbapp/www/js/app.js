@@ -234,7 +234,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     $state.go('signin');
                 } else {
                     console.log('You are not sure');
-                    navigate.vibrate && navigator.vibrate(300);
+                    navigator.vibrate && navigator.vibrate(300);
                 }
             });
         }
