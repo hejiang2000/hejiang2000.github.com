@@ -59,6 +59,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     }
                 });
             }
+
             // Is there a page to go back to?
             if ($location.path() == '/sign-in') {
                 showConfirm();
@@ -72,11 +73,12 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                 $rootScope.im_cancel = false;
                 console.log($rootScope.im_cancel);
             }
+
             return false;
         }, 101);
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
 
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
@@ -95,6 +97,12 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
+
+        // 设置 Ajax 请求头
+        $httpProvider.defaults.headers.common = {
+            "X-Requested-With": "XMLHttpRequest"
+        };
+
         $stateProvider
             .state('signin', {
                 url: '/sign-in',
@@ -124,7 +132,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     'tabs-flight': {
                         templateUrl: 'templates/tab-flight.html',
                         cache: false,
-                        controller: 'ChatFlightCtrl'
+                        controller: 'FlightCtrl'
                     }
                 }
             })
@@ -135,7 +143,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     'tabs-home': {
                         templateUrl: 'templates/tab-Search.html',
                         cache: false,
-                        controller: 'ChatSearchCtrl'
+                        controller: 'SearchCtrl'
                     }
                 }
             })
@@ -171,9 +179,10 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
     })
 
-    .controller('SignInCtrl', function ($scope, $state, $http, $timeout, apiContext) {
+    .controller('SignInCtrl', function ($scope, $state, $http, $timeout, $ionicPopup, apiContext) {
         $scope.user = {};
-
+        var title = "操作员登录";
+        var message = null;
         $scope.signIn = function (user) {
             $http.post(apiContext + "/html/system/login/index.html", user, {
                 headers: {
@@ -181,19 +190,19 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
             }).then(function (response) {
-                console.log(user);
-                console.log(response);
+                console.info("user loggedin.", user, response);
                 $state.go('tabs.home');
             }, function (response) {
+                console.error("user failed to login", user, response);
                 if ((response.status && response.status == '401') || response.status && response.status == '500') {
-                    alert("输入的帐户名或者密码有问题");
+                    message = "输入的帐户名或者密码有误";
                 } else {
-                    alert("链接服务器异常");
-                    console.log(user);
-                    console.log(response);
-                    console.log('shibai');
-
+                    message = "链接服务器异常";
                 }
+                $ionicPopup.alert({
+                    title: title,
+                    template: message
+                });
             });
         };
     })
@@ -385,8 +394,9 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
             $state.go('tabs.home'); //由于某种原因5秒后关闭弹出
         }, 5000);
     })
-
+/*
     .controller('DashCtrl', function ($scope, Chats) {
         $scope.bridges = Chats.bridge();
         console.log(Chats.bridge());
     })
+*/
