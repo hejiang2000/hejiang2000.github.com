@@ -207,7 +207,7 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         };
     })
 
-    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $http, $cordovaProgress, locals, apiContext) {
+    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, $http, $cordovaProgress, locals, apiContext) {
         $scope.$on('$ionicView.enter', function () {
             $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
                 $scope.chats = rs.data.data[0][0];
@@ -222,20 +222,26 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
             });
             confirmPopup.then(function (res) {
                 if (res) {
+                    // 退出登录
                     $http.post(apiContext + "/logout").success(function (rs) {
                         console.log(rs);
                     });
 
+                    // 取消定时更新
+                    $rootScope.polling = false;
+
+                    // 跳转登录页面
                     $state.go('signin');
                 } else {
                     console.log('You are not sure');
+                    navigate.vibrate && navigator.vibrate(300);
                 }
             });
         }
 
         // 检查更新
         $scope.checkUpdate = function () {
-            $cordovaProgress.showBar(true, 100000, "正在更新...");
+            $cordovaProgress.showBar(false, 100000, "正在更新...");
             window.chcp && window.chcp.fetchUpdate(function (error, data) {
                 $cordovaProgress.hide();
 
@@ -260,16 +266,19 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         }
     })
 
-    .controller('TodayCtrl', function ($scope, $rootScope, $state, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext, $cordovaVibration) {
+    .controller('TodayCtrl', function ($scope, $rootScope, $q, $state, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext) {
         function update() {
+            var d1 = $q.defer(),
+                d2 = $q.defer();
+
             $http.get(apiContext + "/api/bb/home/duty").then(function (rs) {
                 console.log(rs);
                 $scope.chats = rs.data.data[0];
+            }).finally(function () {
+                d1.resolve();
             });
 
             $http.get(apiContext + "/api/bb/home/message/list").then(function (rs) {
-
-
                 $scope.texts = rs.data.data[0];
                 $scope.x = {};
 
@@ -285,25 +294,35 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                         );
 
                         my_media.play();
-                        console.log(rs.data.data[0][x]);
-                        $cordovaVibration.vibrate(5000);
+                        navigator.vibrate && navigator.vibrate(5000);
 
+                        console.log(rs.data.data[0][x]);
                     }
 
                 }
                 $rootScope.messages = $scope.texts;
+
+            }).finally(function () {
+                d2.resolve();
             });
 
-            timer = $timeout(update, 2000);
+            $q.all([d1.promise, d2.promise]).then(function () {
+                if ($rootScope.polling) {
+                    timer = $timeout(update, 2000);
+                }
+            });
         }
 
         function cancelTimer($event) {
+            $rootScope.polling = false;
             timer && $timeout.cancel(timer);
+            timer = null;
         }
 
-        update();
-
+        $rootScope.polling = true;
         var timer = null;
+
+        update();
         $scope.$on("$destroy", cancelTimer);
 
 
@@ -369,8 +388,8 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         }
     })
 
-    .controller('ChatDetailCtrl', function ($scope, $rootScope, $state, $cordovaVibration, $http, $stateParams, locals, Chats, $timeout, apiContext) {
-        /*    $cordovaVibration.vibrate(100);*/
+    .controller('ChatDetailCtrl', function ($scope, $rootScope, $state, $http, $stateParams, locals, Chats, $timeout, apiContext) {
+
         angular.forEach($rootScope.messages, function (item) {
             if (item.ID == $stateParams.MessageId) {
                 $scope.chat = item;
