@@ -13,6 +13,28 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            // enable background mode
+            if (window.cordova && window.cordova.plugins && cordova.plugins.backgroundMode) {
+
+                cordova.plugins.backgroundMode.enable();
+
+                // disable webview optimization and enable media play
+                cordova.plugins.backgroundMode.on('activate', function () {
+                    cordova.plugins.backgroundMode.disableWebViewOptimizations();
+                });
+
+                // set default info
+                cordova.plugins.backgroundMode.setDefaults({
+                    title: "登机桥手持端正在后台运行",
+                    text: "请点击这里打开操作界面",
+                    icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
+                    color: 'F14F4D', // hex format like 'F14F4D'
+                    resume: true,
+                    hidden: false,
+                    bigText: true
+                });
+            }
         });
 
         $ionicPlatform.registerBackButtonAction(function (e) {
