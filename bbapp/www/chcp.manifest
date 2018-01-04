@@ -45,7 +45,7 @@
   },
   {
     "file": "js/app.js",
-    "hash": "1d33252c5b6a495473d32dd3be5ead66"
+    "hash": "9b2a4936226c02c20579bd1e2cf67898"
   },
   {
     "file": "js/controllers.js",
@@ -57,7 +57,7 @@
   },
   {
     "file": "js/services.js",
-    "hash": "e1301c21382335536e5f71016d0e7ba2"
+    "hash": "ac23b39347670283cccbdfd7e829576c"
   },
   {
     "file": "lib/angular-animate/.bower.json",

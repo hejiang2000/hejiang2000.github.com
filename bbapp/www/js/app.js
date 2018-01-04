@@ -98,11 +98,11 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
 
-        // 设置 Ajax 请求头
+        /* 设置 Ajax 请求头
         $httpProvider.defaults.headers.common = {
             "X-Requested-With": "XMLHttpRequest"
         };
-
+        */
         $stateProvider
             .state('signin', {
                 url: '/sign-in',

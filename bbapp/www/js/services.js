@@ -1,5 +1,5 @@
 angular.module('starter.services', [])
-  .constant('apiContext','http://1616d788a5.iok.la/' )
+  .constant('apiContext','http://1616d788a5.iok.la' )
 
   /*'http://1616d788a5.iok.la:32118/''http://192.168.1.101/'*/
   .factory('Chats',function($http) {
