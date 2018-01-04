@@ -331,18 +331,20 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
             });
         }
 
-        function cancelTimer($event) {
+        var timer = null;
+
+        $scope.$on("$destroy", function($event) {
             $rootScope.polling = false;
             timer && $timeout.cancel(timer);
             timer = null;
-        }
+        });
 
-        $rootScope.polling = true;
-        var timer = null;
-
-        update();
-        $scope.$on("$destroy", cancelTimer);
-
+        $scope.$on('$ionicView.enter', function () {
+            if (!$rootScope.polling) {
+                $rootScope.polling = true;
+                update();
+            }
+        });
 
         $scope.popupMessageOpthins = function (chat) {
             console.log(chat);
