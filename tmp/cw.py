@@ -28,12 +28,19 @@ def main(src_path, dest_path):
         dest_file.write('{},0x{:0>8x}\r\n'.format(_code, _offset))
         
     # decode finance data records
+    decode_metrics(src_file, dest_file)
     
     src_file.close()
     dest_file.close()
     
     print 'done'
     
+def decode_metrics(src_file, dest_file):
+    src_file.seek(0x00016831L)
+    for i in range(1104/4):
+        v, = struct.unpack('f', src_file.read(4))
+        print "{:.2f}".format(v)
+        
 if __name__ == '__main__':
     main('gpcw20170930.dat', 'gwcw.txt')
     
