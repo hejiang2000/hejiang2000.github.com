@@ -41,15 +41,15 @@
   },
   {
     "file": "index.html",
-    "hash": "d014d0bddd482f6bc910da47203f03f2"
+    "hash": "2de8c02e9dde058fbc5e76874a958cb0"
   },
   {
     "file": "js/app.js",
-    "hash": "713d3b5f8e7d54b9cffdfb6f014916e9"
+    "hash": "9e7199a12239bfd1a868a461b8c529be"
   },
   {
     "file": "js/controllers.js",
-    "hash": "6d7e517838d00e04167aeacdc48afc24"
+    "hash": "8275f2f3205b60b6a8c5589af7013f1a"
   },
   {
     "file": "js/html.js",
@@ -57,7 +57,7 @@
   },
   {
     "file": "js/services.js",
-    "hash": "ac23b39347670283cccbdfd7e829576c"
+    "hash": "74ad16444cb8d43991e36b9739b1166f"
   },
   {
     "file": "lib/angular-animate/.bower.json",

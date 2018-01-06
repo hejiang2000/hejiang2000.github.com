@@ -13,7 +13,6 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
@@ -92,15 +91,17 @@
           <button class="button button-block button-stable" ng-click="checkUpdate()"  >
             软件更新
           </button>
-
           <button class="button button-block button-stable" ng-click="testVibrate()"  >
             震动测试
           </button>
           <button class="button button-block button-stable" ng-click="testPlayMusic()"  >
-            播放测试
+            音乐测试
           </button>
           <button class="button button-block button-stable" ng-click="testScanBarcode()"  >
             扫码测试
+          </button>
+          <button class="button button-block button-stable" ng-click="testTTS()"  >
+            语音测试
           </button>
         </div>
         <br/>

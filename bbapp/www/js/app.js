@@ -4,36 +4,29 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-            if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                cordova.plugins.Keyboard.disableScroll(true);
+            if (window.cordova && window.cordova.plugins) {
+                window.cordova.plugins.Keyboard && cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                window.cordova.plugins.Keyboard && cordova.plugins.Keyboard.disableScroll(true);
+                window.cordova.plugins.autoStart && cordova.plugins.autoStart.enable();
 
-            }
-            if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
-            }
-
-            // enable background mode
-            if (window.cordova && window.cordova.plugins && cordova.plugins.backgroundMode) {
-
-                cordova.plugins.backgroundMode.enable();
-
-                // disable webview optimization and enable media play
-                cordova.plugins.backgroundMode.on('activate', function () {
-                    cordova.plugins.backgroundMode.disableWebViewOptimizations();
-                });
-
-                // set default info
-                cordova.plugins.backgroundMode.setDefaults({
-                    title: "登机桥手持端正在后台运行",
-                    text: "请点击这里打开操作界面",
-                    icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
-                    color: 'F14F4D', // hex format like 'F14F4D'
-                    resume: true,
-                    hidden: false,
-                    bigText: true
-                });
+                // enable background mode
+                if (window.cordova.plugins.backgroundMode) {
+                    cordova.plugins.backgroundMode.enable();
+                    // disable webview optimization and enable media play
+                    cordova.plugins.backgroundMode.on('activate', function () {
+                        cordova.plugins.backgroundMode.disableWebViewOptimizations();
+                    });
+                    // set default info
+                    cordova.plugins.backgroundMode.setDefaults({
+                        title: "登机桥手持端正在后台运行",
+                        text: "请点击这里打开操作界面",
+                        icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
+                        color: 'F14F4D', // hex format like 'F14F4D'
+                        resume: true,
+                        hidden: false,
+                        bigText: true
+                    })
+                }
             }
         });
 
@@ -180,18 +173,25 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
     })
 
     .controller('SignInCtrl', function ($scope, $state, $http, $timeout, $ionicPopup, apiContext) {
-        $scope.user = {};
         var title = "操作员登录";
         var message = null;
+        
         $scope.signIn = function (user) {
+            user.name && (user.username = user.username.toLowerCase());
             $http.post(apiContext + "/html/system/login/index.html", user, {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest",
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
             }).then(function (response) {
-                console.info("user loggedin.", user, response);
-                $state.go('tabs.home');
+                // 检查是否已登录
+                $http.get(apiContext + "/api/bb/cn/changename", {
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                }).then(function (rs) {
+                    $state.go('tabs.home');
+                });
             }, function (response) {
                 console.error("user failed to login", user, response);
                 if ((response.status && response.status == '401') || response.status && response.status == '500') {
@@ -202,40 +202,51 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                 $ionicPopup.alert({
                     title: title,
                     template: message
-                });
-            });
-        };
+                })
+            })
+        }
+
+        $scope.$on('$ionicView.enter', function () {
+            // 检查是否已登录
+            $http.get(apiContext + "/favicon.ico").then(function() {
+                $http.get(apiContext + "/api/bb/cn/changename", {
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                }).then(function (rs) {
+                    $state.go('tabs.home');
+                })
+            })
+            
+            $scope.user = {};
+        })
     })
 
-    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, $http, $cordovaProgress, $cordovaBarcodeScanner, locals, apiContext) {
+    .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, $http, $cordovaProgress, $cordovaBarcodeScanner, locals, apiContext, bell) {
         $scope.$on('$ionicView.enter', function () {
             $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
                 $scope.chats = rs.data.data[0][0];
-            });
-        });
+            })
+        })
 
         $scope.doaquit = function (rs) {
-
             var confirmPopup = $ionicPopup.confirm({
                 title: '退出',
                 template: '是否退出'
-            });
-            confirmPopup.then(function (res) {
+            }).then(function (res) {
                 if (res) {
-                    // 退出登录
-                    $http.post(apiContext + "/logout").success(function (rs) {
-                        console.log(rs);
-                    });
-
                     // 取消定时更新
                     $rootScope.polling = false;
 
-                    // 跳转登录页面
-                    $state.go('signin');
+                    // 退出登录
+                    $http.post(apiContext + "/logout").success(function (rs) {
+                        // 跳转登录页面
+                        $state.go('signin');
+                    });
                 } else {
                     console.log('You are not sure');
                 }
-            });
+            })
         }
 
         // 检查更新
@@ -260,42 +271,45 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
                 $ionicPopup.alert({
                     title: title,
                     template: message
-                });
-            });
+                })
+            })
         }
 
         // 测试震动
         $scope.testVibrate = function () {
-            navigator.vibrate && navigator.vibrate(300);
+            bell.vibrate();
         }
 
         // 测试播放音乐
         $scope.testPlayMusic = function () {
-            srcFile = '/android_asset/www/media/music.mp3';
-            var my_media = new Media(srcFile, function () {
-                    console.log("playAudio():Audio Success");
-                },
-                function (err) {
-                    console.log("playAudio():Audio Error: " + err);
-                }
-            );
-
-            my_media.play();
+            bell.ring(false);
         }
 
         // 测试扫码
         $scope.testScanBarcode = function() {
             $cordovaBarcodeScanner.scan();
         }
+
+        // 测试语音
+        $scope.testTTS = function() {
+            var message = "H U 7 6 7 2 航班，将于15分钟后到达，请做好接机准备。";
+            window.xunfeiListenSpeaking && xunfeiListenSpeaking.startSpeak(function() {
+                // speaking done
+            }, function(err){
+                // speaking error
+                console.error("Fail to speak: ", err);
+            }, message);
+        }
     })
 
-    .controller('TodayCtrl', function ($scope, $rootScope, $q, $state, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext) {
+    .controller('TodayCtrl', function ($scope, $rootScope, $q, $state, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext, bell) {
+        var timer;
+        
         function update() {
             var d1 = $q.defer(),
                 d2 = $q.defer();
 
             $http.get(apiContext + "/api/bb/home/duty").then(function (rs) {
-                console.log(rs);
                 $scope.chats = rs.data.data[0];
             }).finally(function () {
                 d1.resolve();
@@ -303,142 +317,134 @@ angular.module('dengjiqiao', ['ionic', 'ngCordova', 'starter.controllers', 'star
 
             $http.get(apiContext + "/api/bb/home/message/list").then(function (rs) {
                 $scope.texts = rs.data.data[0];
-                $scope.x = {};
-
-                for (x in rs.data.data[0]) {
-                    if (rs.data.data[0][x].NeedSound == 1) {
-                        srcFile = '/android_asset/www/media/music.mp3';
-                        var my_media = new Media(srcFile, function () {
-                                console.log("playAudio():Audio Success");
-                            },
-                            function (err) {
-                                console.log("playAudio():Audio Error: " + err);
-                            }
-                        );
-
-                        my_media.play();
-                        navigator.vibrate && navigator.vibrate(5000);
-
-                        console.log(rs.data.data[0][x]);
-                    }
-
-                }
                 $rootScope.messages = $scope.texts;
+                
+                var needSound = false, infinite = false;
+                for (x in $scope.texts) {
+                    var item = $scope.texts[x];
+                    (item.NeedSound == 1) && (needSound = true);
+                    (item.AlertType == 3 || item.AlertType == 10) && (infinite = true);
+                }
 
+                if (needSound) {
+                    bell.ring(infinite);
+                    bell.vibrate();
+                }
             }).finally(function () {
                 d2.resolve();
             });
 
             $q.all([d1.promise, d2.promise]).then(function () {
-                if ($rootScope.polling) {
-                    timer = $timeout(update, 2000);
-                } else {
+                $rootScope.polling && timer == null && (timer = $timeout(function() {
                     timer = null;
-                }
+                    update();
+                }, 2000));
             });
         }
 
-        var timer = null;
-
-        $scope.$on("$destroy", function ($event) {
-            $rootScope.polling = false;
-            timer && $timeout.cancel(timer);
-            timer = null;
-        });
-
-        $scope.$on('$ionicView.enter', function () {
-            if (!$rootScope.polling || !timer) {
-                $rootScope.polling = true;
-                update();
-            }
-        });
-
         $scope.popupMessageOpthins = function (chat) {
+            // stop bell first
+            bell.stop();
+
             console.log(chat);
             var optionsPopup = $ionicPopup.confirm({
                 /*templateUrl: "templates/popup.html",*/
                 title: '确认信息',
                 subTitle: "您已经到达" + chat.Bridge_Code + "号登机口,点击OK进行扫码认证",
-                scope: $scope,
-            });
-            optionsPopup.then(function (res) {
-                console.log(chat);
-                if (res) {
-                    console.log(chat);
-                    $cordovaBarcodeScanner.scan().then(function (imageData) {
-                        if (imageData.text == chat.Bridge_Code && imageData.cancelled == false) {
-                            alert(imageData.text + '号登机桥已进行到位确认');
-                            $http.post(apiContext + "/api/bb/home/message/reach", {
-                                ID: chat.ID,
-                                status: 1,
-                                data: imageData.text
-                            }).success(function () {
-                                update();
-                                alert("扫码成功");
-                            }).error(function () {
-                                update();
-                                alert("扫码失败请再次扫描");
-                            });
-                        } else if (imageData.text != chat.Bridge_Code && imageData.cancelled == false) {
-                            alert('请到达正确登机口');
-                        } else if (imageData.cancelled == true) {
-                            $rootScope.im_cancel = imageData.cancelled;
-                        }
-                        console.log("Barcode Format -> " + imageData.format);
-                        console.log("Cancelled -> " + imageData.cancelled);
-                    }, function (error) {
-                        console.log("An error happened -> " + error);
-                    });
-
-                } else {
-                    console.log('Cancel');
+                scope: $scope
+            }).then(function (res) {
+                if (!res) {
+                    return
                 }
-            });
 
-        };
+                $cordovaBarcodeScanner.scan().then(function (imageData) {
+                    if (imageData.text == chat.Bridge_Code && imageData.cancelled == false) {
+                        alert(imageData.text + '号登机桥已进行到位确认');
+                        $http.post(apiContext + "/api/bb/home/message/reach", {
+                            ID: chat.ID,
+                            status: 1,
+                            data: imageData.text
+                        }).success(function () {
+                            update();
+                            alert("扫码成功");
+                        }).error(function () {
+                            update();
+                            alert("扫码失败请再次扫描");
+                        });
+                    } else if (imageData.text != chat.Bridge_Code && imageData.cancelled == false) {
+                        alert('请到达正确登机口');
+                    } else if (imageData.cancelled == true) {
+                        $rootScope.im_cancel = imageData.cancelled;
+                    }
+                    console.log("Barcode Format -> " + imageData.format);
+                    console.log("Cancelled -> " + imageData.cancelled);
+                }, function (error) {
+                    console.log("An error happened -> " + error);
+                })
+            })
+        }
+
+        $scope.$on("$destroy", function ($event) {
+            timer && $timeout.cancel(timer);
+
+            $rootScope.polling = false;
+            timer = null;
+        })
+
+        $scope.$on('$ionicView.enter', function () {
+            if (!$rootScope.polling) {
+                $rootScope.polling = true;
+                timer = null;
+                
+                update();
+            }
+        })
+
     })
 
     .controller('BridgeCtrl', function ($scope, $rootScope, Chats, $http, locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext) {
-        $http.get(apiContext + "/api/bb/bridge/fightbridge").then(function (rs) {
-            $scope.chats = rs.data.data[0];
-            console.log(rs);
+        $scope.$on('$ionicView.enter', function () {
+            $http.get(apiContext + "/api/bb/bridge/fightbridge").then(function (rs) {
+                $scope.chats = rs.data.data[0];
+                console.log(rs);
+            });
         });
 
         $scope.doRefresh = function () {
             $http.get(apiContext + "/api/bb/bridge/fightbridge").then(function (rs) {
-                    $scope.chats = rs.data.data[0];
-                    console.log(rs);
-                })
-                .finally(function () {
-                    $scope.$broadcast('scroll.refreshComplete');
-                });
+                $scope.chats = rs.data.data[0];
+                console.log(rs);
+            })
+            .finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
         }
     })
 
-    .controller('ChatDetailCtrl', function ($scope, $rootScope, $state, $http, $stateParams, locals, Chats, $timeout, apiContext) {
-
-        angular.forEach($rootScope.messages, function (item) {
-            if (item.ID == $stateParams.MessageId) {
-                $scope.chat = item;
-                return false;
-            }
-        });
-
+    .controller('ChatDetailCtrl', function ($scope, $rootScope, $state, $http, $stateParams, locals, Chats, $timeout, apiContext, bell) {
         $scope.ok = function (status) {
             $http.post(apiContext + "/api/bb/home/message/edit", {
                 ID: $stateParams.MessageId,
                 status: status
             }).then(function () {
-                // do nothing
+                $state.go('tabs.home');
             });
+        }
 
-            $state.go('tabs.home');
+        $scope.$on('$ionicView.enter', function () {
+            bell.stop();
 
-        };
-
-        $timeout(function () {
-            $state.go('tabs.home'); //由于某种原因5秒后关闭弹出
-        }, 5000);
+            angular.forEach($rootScope.messages, function (item) {
+                if (item.ID == $stateParams.MessageId) {
+                    $scope.chat = item;
+                    return false;
+                }
+            });
+    
+            $timeout(function () {
+                $state.go('tabs.home'); //由于某种原因5秒后关闭弹出
+            }, 10000);
+        })
     })
 /*
     .controller('DashCtrl', function ($scope, Chats) {

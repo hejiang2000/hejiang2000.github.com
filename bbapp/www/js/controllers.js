@@ -23,31 +23,27 @@ angular.module('starter.controllers', [])
 
 
     .controller('FlightCtrl', function ($scope, $rootScope, $http, $timeout, apiContext) {
+        var timer = null;
+        
         function update() {
             $http.get(apiContext + "/api/bb/home/depflight").then(function (rs) {
-                console.log(rs);
                 $scope.chats = rs.data.data[0];
             }).finally(function () {
-                if ($rootScope.polling) {
-                    timer = $timeout(update, 5000);
-                }
+                timer == null && (timer = $timeout(function() {
+                    timer = null;
+                    update();
+                }, 5000))
             })
         }
 
-        var timer = null;
+        $scope.$on('$ionicView.enter', function () {
+            timer == null && update();
+        });
 
-        $scope.$on("$destroy", function ($event) {
+        $scope.$on("$ionicView.leave", function ($event) {
             timer && $timeout.cancel(timer);
             timer = null;
         });
-
-        $scope.$on('$ionicView.enter', function () {
-            if (!$rootScope.polling || !timer) {
-                $rootScope.polling = true;
-                update();
-            }
-        });
-
     })
 
     .controller('AccountCtrl', function ($scope) {
