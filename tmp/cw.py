@@ -3,34 +3,6 @@
 
 import sys, struct
 
-def main(src_path, dest_path):
-    print 'src: ', src_path
-    print 'dest:', dest_path
-    
-    # open files
-    src_file = open(src_path, 'rb+')
-    dest_file = open(dest_path, 'wb+')
-
-    # decode file header
-    _date, _index_record_count, _index_record_len, _metrics_record_len, = decode_header(src_file)
-    print "date: {}, stock_count: {}, metrics_record_len: {}".format(_date, _index_record_count, _metrics_record_len)
-    
-    # decode index table
-    _index_table = [];
-    for i in range(_index_record_count):
-        _index_table.append(decode_index(src_file));
-        
-    # decode financial metrics records
-    for key, value in _index_table:
-        metrics = decode_metrics(key, value, src_file, _metrics_record_len)
-        dest_file.write('{}: {}\r\n'.format(key, metrics))
-
-    # close files
-    src_file.close()
-    dest_file.close()
-    
-    print 'done'
-
 def decode_header(src_file):
     # flag 0x0001
     src_file.read(2)
@@ -59,6 +31,34 @@ def decode_metrics(code, offset, src_file, record_len):
         
     return metrics
     
+def main(src_path, dest_path):
+    print 'src: ', src_path
+    print 'dest:', dest_path
+    
+    # open files
+    src_file = open(src_path, 'rb+')
+    dest_file = open(dest_path, 'wb+')
+
+    # decode file header
+    _date, _index_record_count, _index_record_len, _metrics_record_len, = decode_header(src_file)
+    print "date: {}, stock_count: {}, metrics_record_len: {}".format(_date, _index_record_count, _metrics_record_len)
+    
+    # decode index table
+    _index_table = [];
+    for i in range(_index_record_count):
+        _index_table.append(decode_index(src_file));
+        
+    # decode financial metrics records
+    for key, value in _index_table:
+        metrics = decode_metrics(key, value, src_file, _metrics_record_len)
+        dest_file.write('{}: {}\r\n'.format(key, metrics))
+
+    # close files
+    src_file.close()
+    dest_file.close()
+    
+    print 'done'
+
 if __name__ == '__main__':
     main('gpcw20170930.dat', 'gwcw.txt')
     
