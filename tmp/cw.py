@@ -31,13 +31,11 @@ def decode_metrics(code, offset, src_file, record_len):
         
     return metrics
     
-def main(src_path, dest_path):
+def main(src_path):
     print 'src: ', src_path
-    print 'dest:', dest_path
     
     # open files
     src_file = open(src_path, 'rb+')
-    dest_file = open(dest_path, 'wb+')
 
     # decode file header
     _date, _index_record_count, _index_record_len, _metrics_record_len, = decode_header(src_file)
@@ -51,14 +49,23 @@ def main(src_path, dest_path):
     # decode financial metrics records
     for key, value in _index_table:
         metrics = decode_metrics(key, value, src_file, _metrics_record_len)
-        dest_file.write('{}: {}\r\n'.format(key, metrics))
+        
+        dest_path = 'cw-{}\\cw-{}-{}.csv'.format(_date, _date, key)
+        dest_file = open(dest_path, 'wb+')
+        
+        for i, m in enumerate(metrics):
+            if struct.pack('f', m) == '\xf8\xf8\xf8\xf8':
+                dest_file.write('{:0>3d},N/A\r\n'.format(i + 1))
+            else:
+                dest_file.write('{:0>3d},{}\r\n'.format(i + 1, m))
+        
+        dest_file.close()
 
     # close files
     src_file.close()
-    dest_file.close()
     
     print 'done'
 
 if __name__ == '__main__':
-    main('gpcw20170930.dat', 'gwcw.txt')
+    main('gpcw20170930.dat')
     
