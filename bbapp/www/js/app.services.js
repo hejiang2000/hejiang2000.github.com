@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('app.services', [])
     .constant('apiContext', 'http://1616d788a5.iok.la')
 
     /*'http://1616d788a5.iok.la:32118/''http://192.168.1.101/'*/
@@ -303,4 +303,3 @@ angular.module('starter.services', [])
         }
     })
 
-;

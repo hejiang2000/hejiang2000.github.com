@@ -1,14 +1,4 @@
-angular.module('starter.controllers', [])
-
-    /*
-    .controller('DashCtrl', function ($scope) {})
-    .controller('ChatsCtrl', function($scope, Chats) {
-      $scope.chats = Chats.all();
-      $scope.remove = function(chat) {
-        Chats.remove(chat);
-      };
-    })
-    */
+angular.module('controllers.flight', ['app.services'])
 
     .controller('SearchCtrl', function ($scope, $http, apiContext) {
 
@@ -50,4 +40,15 @@ angular.module('starter.controllers', [])
         $scope.settings = {
             enableFriends: true
         };
-    });
+    })
+
+    /*
+    .controller('DashCtrl', function ($scope) {})
+    .controller('ChatsCtrl', function($scope, Chats) {
+      $scope.chats = Chats.all();
+      $scope.remove = function(chat) {
+        Chats.remove(chat);
+      };
+    })
+    */
+

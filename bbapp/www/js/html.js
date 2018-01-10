@@ -42,6 +42,8 @@ angular.module('htmlModule', [], function($httpProvider) {
   $httpProvider.defaults.transformRequest = [function(data) {
     return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
   }];
-});/**
+});
+
+/**
  * Created by Administrator on 2015/12/1.
  */
