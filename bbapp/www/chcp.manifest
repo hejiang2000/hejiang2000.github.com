@@ -41,7 +41,7 @@
   },
   {
     "file": "index.html",
-    "hash": "b00a1b875ac109a5134e6771936395cb"
+    "hash": "78d168ddc8de1c6c00fa5a091726df47"
   },
   {
     "file": "js/app.config.js",
@@ -69,7 +69,7 @@
   },
   {
     "file": "js/controllers.mine.js",
-    "hash": "824b813fcdb1fc458a4707becc239a72"
+    "hash": "c51fdd3fcc50ad7b2fe198b63d065d3d"
   },
   {
     "file": "js/controllers.signin.js",

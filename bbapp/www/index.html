@@ -89,8 +89,13 @@
           </ion-item>
         </ion-list>
         <br/>
-             <br/>
-        <br>
+        <ion-list>
+          <ion-item class="item-remove-animate rj-list" type="item-text-wrap">
+            <span>当前版本：{{version.currentWebVersion}}</span>
+          </ion-item>
+        </ion-list>
+        <br/>
+        <br/>
         <div class="padding">
           <button class="button button-block button-stable" ng-click="doaquit(chats)"  >
             退出登录

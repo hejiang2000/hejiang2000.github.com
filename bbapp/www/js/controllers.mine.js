@@ -2,11 +2,6 @@ angular.module('controllers.mine', ['ionic', 'app.services', 'ngCordova'])
 
     .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, 
         $http, $cordovaProgress, $cordovaBarcodeScanner, locals, apiContext, bell) {
-        $scope.$on('$ionicView.enter', function () {
-            $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
-                $scope.chats = rs.data.data[0][0];
-            })
-        })
 
         $scope.doaquit = function (rs) {
             var confirmPopup = $ionicPopup.confirm({
@@ -79,4 +74,15 @@ angular.module('controllers.mine', ['ionic', 'app.services', 'ngCordova'])
                 console.error("Fail to speak: ", err);
             }, message);
         }
+
+        $scope.$on('$ionicView.enter', function () {
+            $http.get(apiContext + "/api/bb/cn/changename").then(function (rs) {
+                $scope.chats = rs.data.data[0][0];
+            })
+
+            chcp.getVersionInfo(function(err, data) {
+                $scope.version = data;
+            })
+        })
+
     })
