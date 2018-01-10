@@ -1,4 +1,4 @@
-angular.module('controllers.signin', ['ionic', 'app.services', 'ngCordova'])
+angular.module('controllers.bridge', ['ionic', 'app.services', 'ngCordova'])
 
     .controller('BridgeCtrl', function ($scope, $rootScope, Chats, $http, locals,
         $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext) {

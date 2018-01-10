@@ -1,4 +1,4 @@
-angular.module('controllers.signin', ['ionic', 'app.services', 'ngCordova'])
+angular.module('controllers.mine', ['ionic', 'app.services', 'ngCordova'])
 
     .controller('MineCtrl', function ($ionicPopup, $state, $scope, $rootScope, $timeout, 
         $http, $cordovaProgress, $cordovaBarcodeScanner, locals, apiContext, bell) {

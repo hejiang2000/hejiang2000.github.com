@@ -1,4 +1,4 @@
-angular.module('controllers.signin', ['ionic', 'app.services', 'ngCordova'])
+angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
 
     .controller('TodayCtrl', function ($scope, $rootScope, $q, $state, Chats, $http,
         locals, $ionicPopup, $timeout, $cordovaBarcodeScanner, apiContext, bell) {
