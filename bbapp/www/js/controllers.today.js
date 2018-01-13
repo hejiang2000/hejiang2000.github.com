@@ -8,13 +8,24 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
             var d1 = $q.defer(),
                 d2 = $q.defer();
 
-            $http.get(apiContext + "/api/bb/home/duty").then(function (rs) {
+            $http.get(apiContext + "/api/bb/home/duty", {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then(function (rs) {
                 $scope.chats = rs.data.data[0];
+            }, function(err) {
+                console.error("fail to get duty info", err);
+                $state.go('signin');
             }).finally(function () {
                 d1.resolve();
             });
 
-            $http.get(apiContext + "/api/bb/home/message/list").then(function (rs) {
+            $http.get(apiContext + "/api/bb/home/message/list", {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then(function (rs) {
                 $scope.texts = rs.data.data[0];
                 $rootScope.messages = $scope.texts;
 
@@ -30,6 +41,9 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                     bell.ring(infinite);
                     bell.vibrate();
                 }
+            }, function(err) {
+                console.error("fail to get message list", err);
+                $state.go('signin');
             }).finally(function () {
                 d2.resolve();
             });
