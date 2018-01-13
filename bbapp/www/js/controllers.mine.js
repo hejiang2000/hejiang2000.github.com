@@ -11,8 +11,9 @@ angular.module('controllers.mine', ['ionic', 'app.services', 'ngCordova'])
                 if (res) {
                     // 取消定时更新
                     $rootScope.polling = false;
-
+                    
                     // 退出登录
+                    locals.setObject("user", undefined);
                     $http.post(apiContext + "/logout").success(function (rs) {
                         // 跳转登录页面
                         $state.go('signin');

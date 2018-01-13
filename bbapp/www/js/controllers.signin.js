@@ -1,6 +1,6 @@
 angular.module('controllers.signin', ['ionic', 'app.services'])
 
-    .controller('SignInCtrl', function ($scope, $state, $http, $timeout, $ionicPopup, apiContext) {
+    .controller('SignInCtrl', function ($scope, $state, $http, $timeout, $ionicPopup, apiContext, locals) {
         var title = "操作员登录";
         var message = null;
         
@@ -18,6 +18,7 @@ angular.module('controllers.signin', ['ionic', 'app.services'])
                         "X-Requested-With": "XMLHttpRequest"
                     }
                 }).then(function (rs) {
+                    locals.setObject("user", user);
                     $state.go('tabs.home');
                 });
             }, function (response) {
@@ -46,6 +47,9 @@ angular.module('controllers.signin', ['ionic', 'app.services'])
                 })
             })
             
-            $scope.user = {};
+            $scope.user = locals.getObject("user");
+            if ($scope.user.username && $scope.user.password) {
+                $scope.signIn($scope.user);
+            }
         })
     })

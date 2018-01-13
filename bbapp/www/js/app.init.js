@@ -15,7 +15,7 @@ angular.module('app.init', ['ionic'])
                     cordova.plugins.backgroundMode.enable();
                     // disable webview optimization and enable media play
                     cordova.plugins.backgroundMode.on('activate', function () {
-                        cordova.plugins.backgroundMode.disableWebViewOptimizations();
+                        // cordova.plugins.backgroundMode.disableWebViewOptimizations();
                     });
                     // set default info
                     cordova.plugins.backgroundMode.setDefaults({

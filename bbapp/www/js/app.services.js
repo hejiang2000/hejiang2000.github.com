@@ -288,18 +288,33 @@ angular.module('app.services', [])
             }
         );
 
+        var myNativeBell = window.plugins.NativeAudio.preloadComplex(
+            'myNativeBell', 'media/music.mp3', 1, 1, 0,
+            function (msg) {
+                console.log('load native audio succeeded: ' + msg);
+            },
+            function (msg) {
+                console.log('load native audio failed: ' + msg);
+            });
+
         return {
             ring: function (infinite) {
-                !!infinite && (repeat = 12*30);
-                myBell.play();
+                !!infinite && (repeat = 12 * 30);
+                //myBell.play();
+                myNativeBell.play("myNativeBell", undefined, undefined, function complete() {
+                    if (repeat > 0) {
+                        --repeat;
+                        myNativeBell.play("myNativeBell", undefined, undefined, complete);
+                    }
+                })
             },
             stop: function () {
                 repeat = 0;
-                myBell.stop();
+                //myBell.stop();
+                myNativeBell.stop();
             },
-            vibrate: function() {
-              navigator.vibrate && navigator.vibrate(5000);
+            vibrate: function () {
+                navigator.vibrate && navigator.vibrate(5000);
             }
         }
     })
-
