@@ -288,7 +288,7 @@ angular.module('app.services', [])
             }
         );
 
-        var myNativeBell = window.plugins.NativeAudio.preloadComplex(
+        window.plugins.NativeAudio.preloadComplex(
             'myNativeBell', 'media/music.mp3', 1, 1, 0,
             function (msg) {
                 console.log('load native audio succeeded: ' + msg);
@@ -301,17 +301,17 @@ angular.module('app.services', [])
             ring: function (infinite) {
                 !!infinite && (repeat = 12 * 30);
                 //myBell.play();
-                myNativeBell.play("myNativeBell", undefined, undefined, function complete() {
+                window.plugins.NativeAudio.play("myNativeBell", undefined, undefined, function complete() {
                     if (repeat > 0) {
                         --repeat;
-                        myNativeBell.play("myNativeBell", undefined, undefined, complete);
+                        window.plugins.NativeAudio.play("myNativeBell", undefined, undefined, complete);
                     }
                 })
             },
             stop: function () {
                 repeat = 0;
                 //myBell.stop();
-                myNativeBell.stop();
+                window.plugins.NativeAudio.stop();
             },
             vibrate: function () {
                 navigator.vibrate && navigator.vibrate(5000);
