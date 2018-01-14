@@ -1,6 +1,6 @@
 @echo off
 
-rmdir /S /Q  D:\hengrui\hejiang2000.github.com\tmp\sh-csv
+del /F /S /Q D:\hengrui\hejiang2000.github.com\tmp\sh-csv
 mkdir        D:\hengrui\hejiang2000.github.com\tmp\sh-csv
 del /F /S /Q D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv
 

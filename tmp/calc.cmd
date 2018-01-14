@@ -1,4 +1,4 @@
 @echo off
 
-start sz-run.cmd
-start sh-run.cmd
+start calc-sz.cmd
+start calc-sh.cmd
