@@ -76,7 +76,7 @@ class TrendMachine:
     def __mark__(self, status_mark_action, status_mark_date):
         if self.status_mark_action == '':
             self.status_mark_action = status_mark_action 
-            self.status_mark_date   = status_mark_date
+            self.status_mark_date   = '{}'.format(status_mark_date)
 
     def __update_status__(self, status_up_minor, status_up_nature, status_up_trend, status_down_trend, status_down_nature, status_down_minor):
         self.status_up_minor    = status_up_minor
@@ -107,7 +107,7 @@ class TrendMachine:
         # 自然回撤
         if val <= self.__round__(self.last_up_trend_val * (1 - TrendMachine.__turn_ratio__)):
             # 标记顶点
-            self.__mark__("上升趋势顶点", self.last_up_trend_row)
+            self.__mark__("上升顶点", self.last_up_trend_row)
             
             # 转换状态
             self.state = "自然回撤"
@@ -139,12 +139,12 @@ class TrendMachine:
         
         # 标记卖出机会
         if self.trend == "上升趋势" and self.last_up_nature_val < self.last_up_trend_val and self.last_up_nature_val > self.last_up_trend_val * (1 - TrendMachine.__turn_ratio__) and val < self.last_up_nature_val * (1 - TrendMachine.__keep_ratio__):
-            self.__mark__("卖出机会点", "")
+            self.__mark__("卖出机会", "")
         
         # 跳转自然回撤
         if val <= self.__round__(self.last_up_nature_val * (1 - TrendMachine.__turn_ratio__)):
             # 标记顶点
-            self.__mark__("自然回升顶点", self.last_up_nature_row)
+            self.__mark__("回升顶点", self.last_up_nature_row)
             
             # 记录数值和位置
             self.last_up_barrier_val = self.last_up_nature_val
@@ -180,7 +180,7 @@ class TrendMachine:
         if val >= self.__round__(self.last_down_trend_val * (1 + TrendMachine.__turn_ratio__)):
         
             # 标记顶点
-            self.__mark__("下降趋势顶点", self.last_down_trend_row)
+            self.__mark__("下降顶点", self.last_down_trend_row)
             
             # 转换状态
             self.state = "自然回升"
@@ -213,12 +213,12 @@ class TrendMachine:
         
         # 标记买入机会
         if self.trend == "下降趋势" and self.last_down_nature_val > self.last_down_trend_val and self.last_down_nature_val < self.last_down_trend_val * (1 + TrendMachine.__keep_ratio__) and val > self.last_down_nature_val * (1 + TrendMachine.__keep_ratio__):
-            self.__mark__("买入机会点", "")
+            self.__mark__("买入机会", "")
         
         # 跳转自然回升
         if val >= self.__round__(self.last_down_nature_val * (1 + TrendMachine.__turn_ratio__)):
             # 标记顶点
-            self.__mark__("自然下降顶点", self.last_down_nature_row)
+            self.__mark__("回撤顶点", self.last_down_nature_row)
             
             # 记录数值和位置
             self.last_down_support_val = self.last_down_nature_val
