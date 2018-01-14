@@ -15,7 +15,7 @@ for /R D:\zd_pazq\vipdoc\sh\lday %%i in (*.day) do (
     for /f "tokens=2 delims=h" %%j in ("%%~ni") do (
         if "%%j" gtr "600000" if "%%j" lss "604000" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sh-csv\sh%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv sh%%j
-            if errorlevel 1 copy D:\hengrui\hejiang2000.github.com\tmp\sh-csv\sh%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sh-hold\sh%%~nj.csv
+            if errorlevel 1 copy D:\hengrui\hejiang2000.github.com\tmp\sh-csv\sh%%~nj.csv  D:\hengrui\hejiang2000.github.com\tmp\sh-hold\sh%%~nj.csv
         )
     )
 )

@@ -53,7 +53,8 @@ class TradeMachine:
             self.status_cost = 0.0
             self.status_jump = 0.0
             self.status_trade_days = 0
-            
+            self.status_loss_ratio = TradeMachine.__loss_ratio__
+           
             return
             
         # 止损操作
@@ -71,6 +72,7 @@ class TradeMachine:
             self.status_cost = 0.0
             self.status_jump = 0.0
             self.status_trade_days = 0
+            self.status_loss_ratio = TradeMachine.__loss_ratio__
 
             return
             
