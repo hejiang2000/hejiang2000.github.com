@@ -12,6 +12,10 @@ class TradeMachine:
         self.status_bal  = 0.0  # 交易结余
         self.status_stop = 0.0  # 止损价格
         self.status_jump = 0.0  # 更新价格
+        self.status_trade_win_count    = 0
+        self.status_trade_win_ratio    = 0
+        self.status_trade_loss_count   = 0
+        self.status_trade_loss_ratio   = 0
         
     def step(self, val, mark):
         # 买入操作
@@ -24,13 +28,24 @@ class TradeMachine:
             
         # 卖出操作
         if self.status_vol > 0 and mark == '卖出机会点':
+            if val * self.status_vol - self.status_cost > 0:
+                self.status_trade_win_count = self.status_trade_win_count + 1
+                self.status_trade_win_ratio = self.status_trade_win_ratio + val * self.status_vol / self.status_cost - 1
+            else:
+                self.status_trade_loss_count = self.status_trade_loss_count + 1
+                self.status_trade_loss_ratio = self.status_trade_loss_ratio + val * self.status_vol / self.status_cost - 1
+                
             self.status_bal  = self.status_bal + (val * self.status_vol - self.status_cost)
             self.status_vol  = 0
             self.status_cost = 0.0
             self.status_jump = 0.0
-
+                
         # 止损操作
         if self.status_vol > 0 and val < self.status_stop:
+            if val * self.status_vol - self.status_cost > 0:
+                self.status_trade_win_count = self.status_trade_win_count + 1
+            else:
+                self.status_trade_loss_count = self.status_trade_loss_count + 1
             self.status_bal  = self.status_bal + (val * self.status_vol - self.status_cost)
             self.status_vol  = 0
             self.status_cost = 0.0
@@ -48,4 +63,6 @@ class TradeMachine:
     def status(self):
         return (self.status_vol, self.status_cost, self.status_bal)
         
-    
+    def get_trade_statistics(self):
+        return (self.status_trade_win_count, self.status_trade_win_ratio, self.status_trade_loss_count, self.status_trade_loss_ratio)
+        
