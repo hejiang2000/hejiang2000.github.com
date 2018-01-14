@@ -16,11 +16,9 @@ def parse_record_item(buf):
     return (_date, _open, _high, _low, _close, _amount, _vol)
     
     
-def main(src_path, dest_path, log_path):
-    print 'src: ', src_path
-    print 'dest:', dest_path
-    print 'log: ', log_path
-    
+def main(src_path, dest_path, log_path, code):
+    print 'calc - {}'.format(code)
+
     src_file  = open(src_path , 'rb+')
     dest_file = open(dest_path, 'wb+')
     log_file  = open(log_path , 'ab+')
@@ -34,7 +32,6 @@ def main(src_path, dest_path, log_path):
         buf = src_file.read(32)
         if len(buf) < 32:
             log_file.write('{}, {}\r\n'.format(src_path, trade_status[2]))
-            
             break
             
         item = parse_record_item(buf)
@@ -52,8 +49,6 @@ def main(src_path, dest_path, log_path):
     src_file.close()
     dest_file.close()
     
-    print 'done'
-    
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], 'log.csv')
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
     

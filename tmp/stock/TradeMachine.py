@@ -31,9 +31,9 @@ class TradeMachine:
             self.status_jump = 0.0
             
         # 更新止损
-        jump_ratio = TradeMachine.__jump_ratio__
-        if self.status_jump - self.status_cost < 0.0001:
-            jump_ratio = jump_ratio + TradeMachine.__loss_ratio__
+        jump_ratio = TradeMachine.__jump_ratio__ + TradeMachine.__loss_ratio__
+        #if self.status_jump - self.status_cost < 0.0001:
+        #    jump_ratio = jump_ratio + TradeMachine.__loss_ratio__
         
         if self.status_vol > 0 and val > self.status_jump * (1 + jump_ratio):
             self.status_jump = val
