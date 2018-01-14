@@ -5,6 +5,8 @@ mkdir        D:\hengrui\hejiang2000.github.com\tmp\sh-csv
 del /F /S /Q D:\hengrui\hejiang2000.github.com\tmp\sh-600000-old.csv
 ren          D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv sh-600000-old.csv
 
+echo 股票代码,结余,盈利,亏损 > D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv
+
 for /R D:\zd_pazq\vipdoc\sh\lday %%i in (*.day) do (
     for /f "tokens=2 delims=h" %%j in ("%%~ni") do (
         if "%%j" gtr "600000" if "%%j" lss "700000" (

@@ -24,7 +24,6 @@ def main(src_path, dest_path, log_path, code):
     log_file  = open(log_path , 'ab+')
     
     dest_file.write('日期,开盘,最高,最低,收盘,成交额,成交量,次级回升,自然回升,上升趋势,下降趋势,自然回撤,次级回撤,关键标记,标记日期, 头寸, 成本, 结余\r\n'.decode('utf-8').encode('gb18030'))
-    log_file.write('股票代码,结余,盈利,亏损\r\n')
     
     tm  = TrendMachine(parse_record_item(src_file.read(32))[4])
     trader = TradeMachine()
