@@ -25,10 +25,11 @@ def main(src_path, dest_path, log_path, code):
     
     dest_file.write(('交易日期,开盘价格,最高价格,最低价格,收盘价格,      成交额,      成交量,' + \
     '次级回升,自然回升,上升趋势,下降趋势,自然回撤,次级回撤,' + \
-    '关键标记,标记日期,    头寸,    成本\r\n').decode('utf-8').encode('gb18030'))
+    '关键标记,标记日期,    头寸,    成本,止损比率\r\n').decode('utf-8').encode('gb18030'))
     
-    tm  = TrendMachine(parse_record_item(src_file.read(32))[4])
+    trends = TrendMachine(parse_record_item(src_file.read(32))[4])
     trader = TradeMachine()
+    trend_status = ()
     trade_status = ()
     
     while True:
@@ -40,8 +41,10 @@ def main(src_path, dest_path, log_path, code):
             break
             
         item = parse_record_item(buf)
-        tm.step(*item)
-        trend_status = tm.status()
+        
+        trends.step(*item)
+        trend_status = trends.status()
+        
         trader.step(item[4], trend_status[6])
         trade_status = trader.status()
         
@@ -49,7 +52,7 @@ def main(src_path, dest_path, log_path, code):
         for i in trend_status:
             str = '{},{:>8s}'.format(str, i) if type(i) is types.StringType else '{},{:>8.2f}'.format(str, i)
             
-        str = '{},{:>8d},{:>8.2f}\r\n'.format(str, *trade_status)
+        str = '{},{:>8d},{:>8.2f},{:>8.2f}\r\n'.format(str, *trade_status)
         
         dest_file.write(str.decode('utf-8').encode('gb18030'))
         
