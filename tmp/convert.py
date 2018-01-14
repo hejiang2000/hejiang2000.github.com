@@ -31,7 +31,7 @@ def main(src_path, dest_path, log_path, code):
     while True:
         buf = src_file.read(32)
         if len(buf) < 32:
-            log_file.write('{}, {},{},{}\r\n'.format(src_path, trade_status[2], 1 if trade_status[2] > 0 else 0, 1 if trade_status[2] < 0 else 0))
+            log_file.write('{}, {},{},{}\r\n'.format(code, trade_status[2], 1 if trade_status[2] > 0 else 0, 1 if trade_status[2] < 0 else 0))
             break
             
         item = parse_record_item(buf)

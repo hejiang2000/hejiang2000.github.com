@@ -4,6 +4,7 @@
 class TradeMachine:
     __loss_ratio__ = 0.09
     __jump_ratio__ = 0.06
+    __init_jump_ratio__ = 0.12
     
     def __init__(self):
         self.status_vol  = 0    # 交易量
@@ -33,7 +34,7 @@ class TradeMachine:
         # 更新止损
         jump_ratio = TradeMachine.__jump_ratio__
         if self.status_jump - self.status_cost < 0.0001:
-            jump_ratio = jump_ratio + TradeMachine.__loss_ratio__
+            jump_ratio = TradeMachine.__init_jump_ratio__
         
         if self.status_vol > 0 and val > self.status_jump * (1 + jump_ratio):
             self.status_jump = val
