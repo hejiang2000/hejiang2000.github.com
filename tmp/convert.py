@@ -59,6 +59,8 @@ def main(src_path, dest_path, log_path, code):
     src_file.close()
     dest_file.close()
     
-if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    return trade_status[0]
     
+if __name__ == '__main__':
+    ret = main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    sys.exit(ret)

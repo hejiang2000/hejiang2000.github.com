@@ -90,5 +90,6 @@ class TradeMachine:
         return (self.status_vol, self.status_cost, self.status_loss_ratio)
         
     def get_trade_statistics(self):
-        return (self.status_trade_win_count, self.status_trade_win_ratio, self.status_trade_win_days, self.status_trade_loss_count, self.status_trade_loss_ratio, self.status_trade_loss_days)
+        return (self.status_trade_win_count, self.status_trade_win_ratio, self.status_trade_win_days, \
+        self.status_trade_loss_count, self.status_trade_loss_ratio, self.status_trade_loss_days)
         
