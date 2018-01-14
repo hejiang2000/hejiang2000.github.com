@@ -17,10 +17,10 @@ echo ¹ÉÆ±´úÂë,Ó¯Àû´ÎÊı,Ó¯Àû±ÈÂÊ,Ó¯ÀûÌìÊı,¿÷Ëğ´ÎÊı,¿÷Ëğ±ÈÂÊ,¿÷ËğÌìÊı,×ÛºÏ±ÈÂÊ,×Ûº
 
 for /R D:\zd_pazq\vipdoc\sz\lday %%i in (*.day) do (
     for /f "tokens=2 delims=z" %%j in ("%%~ni") do (
-        if "%%j" lss "002700" (
+        if "%%j" lss "010000" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sz-000000.csv sz%%j
             if errorlevel 1 copy D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv  D:\hengrui\hejiang2000.github.com\tmp\sz-hold\sz%%~nj.csv
-        ) else if "%%j" gtr "300000" if "%%j" lss "300400" (
+        ) else if "%%j" gtr "300000" if "%%j" lss "310000" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sz-300000.csv sz%%j
             if errorlevel 1 copy D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv  D:\hengrui\hejiang2000.github.com\tmp\sz-hold\sz%%~nj.csv
         )

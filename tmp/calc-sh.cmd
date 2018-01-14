@@ -13,7 +13,7 @@ echo ¹ÉÆ±´úÂë,Ó¯Àû´ÎÊı,Ó¯Àû±ÈÂÊ,Ó¯ÀûÌìÊı,¿÷Ëğ´ÎÊı,¿÷Ëğ±ÈÂÊ,¿÷ËğÌìÊı,×ÛºÏ±ÈÂÊ,×Ûº
 
 for /R D:\zd_pazq\vipdoc\sh\lday %%i in (*.day) do (
     for /f "tokens=2 delims=h" %%j in ("%%~ni") do (
-        if "%%j" gtr "600000" if "%%j" lss "604000" (
+        if "%%j" gtr "600000" if "%%j" lss "700000" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sh-csv\sh%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv sh%%j
             if errorlevel 1 copy D:\hengrui\hejiang2000.github.com\tmp\sh-csv\sh%%~nj.csv  D:\hengrui\hejiang2000.github.com\tmp\sh-hold\sh%%~nj.csv
         )
