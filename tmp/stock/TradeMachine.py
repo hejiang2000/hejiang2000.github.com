@@ -13,8 +13,6 @@ class TradeMachine:
         self.status_stop = 0.0  # 止损价格
         self.status_jump = 0.0  # 更新价格
         
-        pass
-        
     def step(self, val, mark):
         # 买入操作
         if self.status_vol == 0 and mark == '买入机会点':
@@ -24,6 +22,13 @@ class TradeMachine:
             self.status_stop = val * (1 - TradeMachine.__loss_ratio__)
             return
             
+        # 卖出操作
+        if self.status_vol > 0 and mark == '卖出机会点':
+            self.status_bal  = self.status_bal + (val * self.status_vol - self.status_cost)
+            self.status_vol  = 0
+            self.status_cost = 0.0
+            self.status_jump = 0.0
+
         # 止损操作
         if self.status_vol > 0 and val < self.status_stop:
             self.status_bal  = self.status_bal + (val * self.status_vol - self.status_cost)
