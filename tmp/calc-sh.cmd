@@ -5,7 +5,7 @@ mkdir        D:\hengrui\hejiang2000.github.com\tmp\sh-csv
 del /F /S /Q D:\hengrui\hejiang2000.github.com\tmp\sh-600000-old.csv
 ren          D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv sh-600000-old.csv
 
-echo è‚¡ç¥¨ä»£ç ,ç»“ä½™,ç›ˆåˆ©,äºæŸ > D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv
+echo ¹ÉÆ±´úÂë,½áÓà,Ó¯Àû,¿÷Ëð > D:\hengrui\hejiang2000.github.com\tmp\sh-600000.csv
 
 for /R D:\zd_pazq\vipdoc\sh\lday %%i in (*.day) do (
     for /f "tokens=2 delims=h" %%j in ("%%~ni") do (
