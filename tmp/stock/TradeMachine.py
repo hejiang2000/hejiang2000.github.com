@@ -44,8 +44,11 @@ class TradeMachine:
         if self.status_vol > 0 and val < self.status_stop:
             if val * self.status_vol - self.status_cost > 0:
                 self.status_trade_win_count = self.status_trade_win_count + 1
+                self.status_trade_win_ratio = self.status_trade_win_ratio + val * self.status_vol / self.status_cost - 1
             else:
                 self.status_trade_loss_count = self.status_trade_loss_count + 1
+                self.status_trade_loss_ratio = self.status_trade_loss_ratio + val * self.status_vol / self.status_cost - 1
+                
             self.status_bal  = self.status_bal + (val * self.status_vol - self.status_cost)
             self.status_vol  = 0
             self.status_cost = 0.0

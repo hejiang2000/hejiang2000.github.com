@@ -7,8 +7,8 @@ del /F /S /Q D:\hengrui\hejiang2000.github.com\tmp\sz-300000-old.csv
 ren          D:\hengrui\hejiang2000.github.com\tmp\sz-000000.csv sz-000000-old.csv
 ren          D:\hengrui\hejiang2000.github.com\tmp\sz-300000.csv sz-300000-old.csv
 
-echo 股票代码,交易结余,盈利次数,盈利比率,亏损次数,亏损比率,结果盈利,结果亏损 > D:\hengrui\hejiang2000.github.com\tmp\sz-000000.csv
-echo 股票代码,交易结余,盈利次数,盈利比率,亏损次数,亏损比率,结果盈利,结果亏损 > D:\hengrui\hejiang2000.github.com\tmp\sz-300000.csv
+echo 股票代码,交易结余,盈利次数,盈利比率,亏损次数,亏损比率,综合比率 > D:\hengrui\hejiang2000.github.com\tmp\sz-000000.csv
+echo 股票代码,交易结余,盈利次数,盈利比率,亏损次数,亏损比率,综合比率 > D:\hengrui\hejiang2000.github.com\tmp\sz-300000.csv
 
 for /R D:\zd_pazq\vipdoc\sz\lday %%i in (*.day) do (
     for /f "tokens=2 delims=z" %%j in ("%%~ni") do (
