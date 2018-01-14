@@ -12,9 +12,9 @@ echo ¹ÉÆ±´úÂë,½»Ò×½áÓà,Ó¯Àû´ÎÊı,Ó¯Àû±ÈÂÊ,Ó¯ÀûÌìÊı,¿÷Ëğ´ÎÊı,¿÷Ëğ±ÈÂÊ,¿÷ËğÌìÊı,×Ûº
 
 for /R D:\zd_pazq\vipdoc\sz\lday %%i in (*.day) do (
     for /f "tokens=2 delims=z" %%j in ("%%~ni") do (
-        if "%%j" lss "010000" (
+        if "%%j" lss "002700" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sz-000000.csv sz%%j
-        ) else if "%%j" gtr "300000" if "%%j" lss "310000" (
+        ) else if "%%j" gtr "300000" if "%%j" lss "300400" (
             python convert.py %%i D:\hengrui\hejiang2000.github.com\tmp\sz-csv\sz%%~nj.csv D:\hengrui\hejiang2000.github.com\tmp\sz-300000.csv sz%%j
         )
     )
