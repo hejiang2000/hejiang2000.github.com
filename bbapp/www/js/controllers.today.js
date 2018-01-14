@@ -16,7 +16,7 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                 $scope.chats = rs.data.data[0];
             }, function(err) {
                 console.error("fail to get duty info", err);
-                $state.go('signin');
+                //$state.go('signin');
             }).finally(function () {
                 d1.resolve();
             });
@@ -43,7 +43,7 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                 }
             }, function(err) {
                 console.error("fail to get message list", err);
-                $state.go('signin');
+                //$state.go('signin');
             }).finally(function () {
                 d2.resolve();
             });
