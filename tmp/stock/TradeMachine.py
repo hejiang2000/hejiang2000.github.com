@@ -77,17 +77,15 @@ class TradeMachine:
             return
             
         # 更新止损
-        jump_ratio = TradeMachine.__jump_ratio__
-        if self.status_jump - self.status_cost < 0.0001:
-            jump_ratio = TradeMachine.__init_jump_ratio__
-        
+        jump_ratio = TradeMachine.__init_jump_ratio__ if self.status_jump - self.status_cost < 0.0001 else TradeMachine.__jump_ratio__
         if self.status_vol > 0 and val > self.status_jump * (1 + jump_ratio):
-            if self.status_loss_ratio < TradeMachine.__loss_ratio__ * 2:
-                self.status_loss_ratio = self.status_loss_ratio + 0.01
-                
+            
             self.status_jump = val
             self.status_stop = val * (1 - self.status_loss_ratio)
             
+            if self.status_loss_ratio < TradeMachine.__loss_ratio__ * 2:
+                self.status_loss_ratio = self.status_loss_ratio + 0.01
+                
     def status(self):
         return (self.status_vol, self.status_cost, self.status_loss_ratio)
         
