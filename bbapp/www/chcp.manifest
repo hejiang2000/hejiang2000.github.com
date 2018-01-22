@@ -41,7 +41,7 @@
   },
   {
     "file": "index.html",
-    "hash": "78d168ddc8de1c6c00fa5a091726df47"
+    "hash": "6a48c056f4fb8bcc20666e4088b61078"
   },
   {
     "file": "js/app.config.js",
@@ -57,7 +57,7 @@
   },
   {
     "file": "js/app.services.js",
-    "hash": "2bd5d8b4f5089486d7e6c3ade1fb0406"
+    "hash": "fa9f236c5a245c39f778d0760d85e684"
   },
   {
     "file": "js/controllers.bridge.js",
@@ -69,7 +69,7 @@
   },
   {
     "file": "js/controllers.mine.js",
-    "hash": "93f38af8d0161e88abc9c5a8d64e495a"
+    "hash": "538ea376a8a27dd5411ea6c7e9a774f9"
   },
   {
     "file": "js/controllers.signin.js",
@@ -77,7 +77,7 @@
   },
   {
     "file": "js/controllers.today.js",
-    "hash": "0400b28e335bbc4cfb8d2801176b13bc"
+    "hash": "757792e8cd3a5d35839440d9d24a8fb3"
   },
   {
     "file": "js/html.js",

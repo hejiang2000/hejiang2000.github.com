@@ -315,6 +315,22 @@ angular.module('app.services', [])
             },
             vibrate: function () {
                 navigator.vibrate && navigator.vibrate(5000);
+            },
+            notify: function (title, text) {
+                window.cordova.plugins.notification && window.cordova.plugins.notification.local &&
+                cordova.plugins.notification.local.hasPermission(function (granted) {
+                    if (granted) {
+                        cordova.plugins.notification.local.schedule({
+                            id: 1,
+                            title: title,
+                            text: text,
+                            foreground: true,
+                            led: { color: '#FF00FF', on: 500, off: 500 },
+                            vibrate: true,
+                            sound: "file://media/music.mp3"
+                        });
+                    }
+                });
             }
         }
     })

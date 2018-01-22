@@ -30,16 +30,18 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                 $rootScope.messages = $scope.texts;
 
                 var needSound = false,
-                    infinite = false;
+                    infinite = false,
+                    alertMessage = null;
                 for (x in $scope.texts) {
                     var item = $scope.texts[x];
-                    (item.NeedSound == 1) && (item.AlertStatus == 0) && (needSound = true);
+                    (item.NeedSound == 1) && (item.AlertStatus == 0) && (needSound = true, alertMessage = item.Message);
                     (item.AlertType == 3 || item.AlertType == 10) && (item.AlertStatus == 0) && (infinite = true);
                 }
 
                 if (needSound) {
                     bell.ring(infinite);
-                    bell.vibrate();
+                    //bell.vibrate();
+                    bell.notify("登机桥手持端", alertMessage);
                 }
             }, function(err) {
                 console.error("fail to get message list", err);

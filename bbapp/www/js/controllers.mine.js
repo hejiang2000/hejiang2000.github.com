@@ -86,4 +86,8 @@ angular.module('controllers.mine', ['ionic', 'app.services', 'ngCordova'])
             })
         })
 
+        // 测试通知
+        $scope.testLocalNotification = function() {
+            bell.notify('登机桥手持机', '这是一个本地通知测试，请检查是否正常。');            
+        }
     })
