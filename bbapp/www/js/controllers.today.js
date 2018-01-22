@@ -39,9 +39,9 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                 }
 
                 if (needSound) {
+                    bell.notify("登机桥手持端", alertMessage);
                     bell.ring(infinite);
                     //bell.vibrate();
-                    bell.notify("登机桥手持端", alertMessage);
                 }
             }, function(err) {
                 console.error("fail to get message list", err);
