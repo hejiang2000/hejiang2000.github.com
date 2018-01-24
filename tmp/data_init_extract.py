@@ -30,7 +30,7 @@ def main(src_path, dest_path, stockcode, datecode):
             
         item = parse_record_item(buf)
         if item[0] > datecode:
-            str = 'insert into data_1day(stock_code, trade_date, price_open, price_high, price_low, price_close, trade_value, trade_volume) values(\'{}\',\'{}\',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\r\n'.format(stockcode, *item)
+            str = 'insert into data_1day(stock_code, trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) values(\'{}\',\'{}\',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\r\n'.format(stockcode, *item)
             dest_file.write(str)
             # str = '{},{},{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d}\r\n'.format(stockcode, *item)
             # dest_file.write(str.decode('utf-8').encode('gb18030'))
