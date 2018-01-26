@@ -13,10 +13,23 @@ angular.module('app.init', ['ionic'])
                 // enable background mode
                 if (window.cordova.plugins.backgroundMode) {
                     cordova.plugins.backgroundMode.enable();
-                    // disable webview optimization and enable media play
+
                     cordova.plugins.backgroundMode.on('activate', function () {
+                        // disable webview optimization and enable media play
                         // cordova.plugins.backgroundMode.disableWebViewOptimizations();
+
+                        // 关闭屏幕常亮
+                        // window.keepscreenon && window.keepscreenon.disable();
                     });
+
+                    cordova.plugins.backgroundMode.on('deactivate', function () {
+                        // 保持屏幕常亮
+                        window.keepscreenon && window.keepscreenon.enable();
+                    });
+
+                    // 保持屏幕常亮
+                    window.keepscreenon && window.keepscreenon.enable();
+
                     // set default info
                     cordova.plugins.backgroundMode.setDefaults({
                         title: "登机桥手持端正在后台运行",
@@ -29,6 +42,9 @@ angular.module('app.init', ['ionic'])
                     })
                 }
             }
+
+            // 保持屏幕常亮
+            window.keepscreenon && window.keepscreenon.enable();
         });
 
         $ionicPlatform.registerBackButtonAction(function (e) {
@@ -70,5 +86,5 @@ angular.module('app.init', ['ionic'])
 
             return false;
         }, 101);
-        
+
     })

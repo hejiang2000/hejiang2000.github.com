@@ -317,20 +317,38 @@ angular.module('app.services', [])
                 navigator.vibrate && navigator.vibrate(5000);
             },
             notify: function (title, text) {
+                if (cordova.plugins.backgroundMode && cordova.plugins.backgroundMode.isActive()) {
+                    cordova.plugins.backgroundMode.isScreenOff(function (isScreenOff) {
+                        if (isScreenOff) {
+                            // Turn screen on
+                            cordova.plugins.backgroundMode.wakeUp();
+                            // Turn screen on and show app even locked
+                            cordova.plugins.backgroundMode.unlock();
+                        } else {
+                            // Move to foreground
+                            cordova.plugins.backgroundMode.moveToForeground();
+                        }
+                    });
+                }
+
                 window.cordova.plugins.notification && window.cordova.plugins.notification.local &&
-                cordova.plugins.notification.local.hasPermission(function (granted) {
-                    if (granted) {
-                        cordova.plugins.notification.local.schedule({
-                            id: 1,
-                            title: title,
-                            text: text,
-                            foreground: true,
-                            led: { color: '#FF00FF', on: 500, off: 500 },
-                            vibrate: true,
-                            sound: "file://media/music.mp3"
-                        });
-                    }
-                });
+                    cordova.plugins.notification.local.hasPermission(function (granted) {
+                        if (granted) {
+                            cordova.plugins.notification.local.schedule({
+                                id: 1,
+                                title: title,
+                                text: text,
+                                foreground: true,
+                                led: {
+                                    color: '#FF00FF',
+                                    on: 500,
+                                    off: 500
+                                },
+                                vibrate: true,
+                                sound: "file://media/music.mp3"
+                            });
+                        }
+                    });
             }
         }
     })

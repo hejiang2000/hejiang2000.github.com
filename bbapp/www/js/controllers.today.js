@@ -16,7 +16,10 @@ angular.module('controllers.today', ['ionic', 'app.services', 'ngCordova'])
                 $scope.chats = rs.data.data[0];
             }, function(err) {
                 console.error("fail to get duty info", err);
-                //$state.go('signin');
+                if (err.status == 401) {
+                    $rootScope.polling = false;
+                    $state.go('signin');
+                }
             }).finally(function () {
                 d1.resolve();
             });

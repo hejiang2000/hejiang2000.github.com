@@ -3,7 +3,7 @@ angular.module('controllers.signin', ['ionic', 'app.services'])
     .controller('SignInCtrl', function ($scope, $state, $http, $timeout, $ionicPopup, apiContext, locals) {
         var title = "操作员登录";
         var message = null;
-        
+
         $scope.signIn = function (user) {
             user.name && (user.username = user.username.toLowerCase());
             $http.post(apiContext + "/html/system/login/index.html", user, {
@@ -37,19 +37,23 @@ angular.module('controllers.signin', ['ionic', 'app.services'])
 
         $scope.$on('$ionicView.enter', function () {
             // 检查是否已登录
-            $http.get(apiContext + "/favicon.ico").then(function() {
+            $http.get(apiContext + "/favicon.ico").then(function () {
                 $http.get(apiContext + "/api/bb/cn/changename", {
                     headers: {
                         "X-Requested-With": "XMLHttpRequest"
                     }
                 }).then(function (rs) {
                     $state.go('tabs.home');
+                }, function () {
+                    $http.post(apiContext + "/logout").then(function () {
+                        $http.get(apiContext + "/favicon.ico").then(function () {
+                            $scope.user = locals.getObject("user");
+                            if ($scope.user.username && $scope.user.password) {
+                                $scope.signIn($scope.user);
+                            }
+                        })
+                    })
                 })
             })
-            
-            $scope.user = locals.getObject("user");
-            if ($scope.user.username && $scope.user.password) {
-                $scope.signIn($scope.user);
-            }
         })
     })
