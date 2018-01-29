@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-import sys, struct, types
-from stock.TrendMachine import TrendMachine
-from stock.TradeMachine import TradeMachine
+import sys, os, struct, pymysql
 
+# 解析二进制数据记录
 def parse_record_item(buf):
     _date, _open, _high, _low, _close, _amount, _vol, _reserved = struct.unpack('iiiiifii', buf)
     
@@ -15,29 +14,45 @@ def parse_record_item(buf):
 
     return (_date, _open, _high, _low, _close, _amount, _vol)
     
-    
-def main(src_path, dest_path, stockcode, datecode):
-    print 'calc - {}'.format(stockcode)
-
-    src_file  = open(src_path , 'rb+')
-    dest_file = open(dest_path, 'ab+')
-    
-    datecode  = int(datecode)
+# 从文件中提取新数据，并插入数据库中    
+def extract(src_file, dst_file, stock_code, date_code):
+    date_code = int(date_code)
     while True:
         buf = src_file.read(32)
         if len(buf) < 32:
             break
             
         item = parse_record_item(buf)
-        if item[0] > datecode:
-            str = 'insert into data_1day(stock_code, trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) values(\'{}\',\'{}\',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\r\n'.format(stockcode, *item)
-            dest_file.write(str)
-            # str = '{},{},{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d}\r\n'.format(stockcode, *item)
-            # dest_file.write(str.decode('utf-8').encode('gb18030'))
-        
-    src_file.close()
-    dest_file.close()
+        if item[0] > date_code:
+            sql = "insert into stock_quote_1day(stock_code, trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) values('{}','{}',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\n".format(stock_code, *item)
+            dst_file.write(sql)
+
+    
+# 主程序入口
+def main(folder_path, sql_path, date_code):
+    print('folder: {}'.format(folder_path))
+    print('  date: {}'.format(date_code))
+    
+    dst_file = open(sql_path, 'a+')
+
+    # 循环处理目录下的每个文件
+    for file_path in os.listdir(folder_path):
+        stock_code = file_path[2:8]
+        if (stock_code > '600000' and stock_code < '700000') or \
+           (stock_code > '300000' and stock_code < '310000') or \
+           (stock_code < '010000'):
+            
+            print('extracting {}\\{}'.format(folder_path, file_path))
+            src_file = open(folder_path + '\\' + file_path, 'rb+')
+            extract(src_file, dst_file, stock_code, date_code)
+            src_file.close()
+            
+    return 0
     
 if __name__ == '__main__':
-    ret = main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    folder_path = sys.argv[1]
+    sql_path    = sys.argv[2]
+    date_code   = sys.argv[3] if (len(sys.argv) > 3) else ''
+    
+    ret = main(folder_path, sql_path, date_code)
     sys.exit(ret)
