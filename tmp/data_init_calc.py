@@ -16,12 +16,7 @@ def save_calc_status(db, stock_code, trade_date, adjusted_close, status):
     last_up_barrier, last_down_support) VALUES ('%s', '%s', %f, '%s', '%s', '%s', \
     %f, %f, %f, %f, %f, %f, %f, %f)" % (stock_code, trade_date, adjusted_close, *status)
     cursor = db.cursor()
-    try:
-        cursor.execute(sql)
-        db.commit()
-    except:
-        db.rollback()
-        print("error - stock_code: %s, trade_date: %s" % (stock_code, trade_date))
+    cursor.execute(sql)
         
 def get_uncalc_rows(db, stock_code, trade_date):
     sql = "SELECT * FROM stock_quote_1day WHERE stock_code = '%s' AND trade_date > '%s' ORDER BY trade_date ASC" % (stock_code, trade_date)
@@ -47,7 +42,7 @@ def main():
     cursor = db.cursor()
      
     # SQL 查询语句
-    sql = "SELECT DISTINCT stock_code FROM stock_quote_1day LIMIT 10"
+    sql = "SELECT DISTINCT stock_code FROM stock_quote_1day"
     
     # 执行SQL语句
     cursor.execute(sql)
@@ -56,7 +51,14 @@ def main():
     rows = cursor.fetchall()
 
     for row in rows:
-        do_calculation(db, row[0])
+        stock_code = row[0]
+        print('calculating %s...' % (stock_code))
+        try:
+            do_calculation(db, stock_code)
+            db.commit()
+        except:
+            db.rollback()
+            print("error - stock_code: %s" % (stock_code))
 
     # 关闭数据库连接
     db.close()

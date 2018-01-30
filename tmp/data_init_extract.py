@@ -24,7 +24,9 @@ def extract(src_file, dst_file, stock_code, date_code):
             
         item = parse_record_item(buf)
         if item[0] > date_code:
-            sql = "insert into stock_quote_1day(stock_code, trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) values('{}','{}',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\n".format(stock_code, *item)
+            sql = "insert into stock_quote_1day(stock_code, trade_adjusted_close_price, \
+            trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) \
+            values('{}','{}',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\n".format(stock_code, item[4], *item)
             dst_file.write(sql)
 
     
