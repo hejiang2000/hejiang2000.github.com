@@ -29,7 +29,7 @@ def extract(src_file, dst_file, stock_code, date_code):
 
     
 # 主程序入口
-def main(folder_path, sql_path, date_code):
+def main(folder_path, sql_path, date_code, min_scode, max_scode):
     print('folder: {}'.format(folder_path))
     print('  date: {}'.format(date_code))
     
@@ -38,10 +38,7 @@ def main(folder_path, sql_path, date_code):
     # 循环处理目录下的每个文件
     for file_path in os.listdir(folder_path):
         stock_code = file_path[2:8]
-        if (stock_code > '600000' and stock_code < '700000') or \
-           (stock_code > '300000' and stock_code < '310000') or \
-           (stock_code < '010000'):
-            
+        if stock_code > min_scode and stock_code < max_scode:            
             print('extracting {}\\{}'.format(folder_path, file_path))
             src_file = open(folder_path + '\\' + file_path, 'rb+')
             extract(src_file, dst_file, stock_code, date_code)
@@ -52,7 +49,9 @@ def main(folder_path, sql_path, date_code):
 if __name__ == '__main__':
     folder_path = sys.argv[1]
     sql_path    = sys.argv[2]
-    date_code   = sys.argv[3] if (len(sys.argv) > 3) else ''
+    date_code   = sys.argv[3]
+    min_scode   = sys.argv[4]
+    max_scode   = sys.argv[5]
     
-    ret = main(folder_path, sql_path, date_code)
+    ret = main(folder_path, sql_path, date_code, min_scode, max_scode)
     sys.exit(ret)
