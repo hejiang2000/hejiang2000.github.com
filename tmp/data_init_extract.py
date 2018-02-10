@@ -26,10 +26,10 @@ def extract(src_file, dst_file, stock_code, date_code):
         if item[0] > date_code:
             sql = "insert into stock_quote_1day(stock_code, trade_adjusted_close_price, \
             trade_date, trade_open_price, trade_high_price, trade_low_price, trade_close_price, trade_value, trade_volume) \
-            values('{}','{}',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>12.0f},{:>12d});\n".format(stock_code, item[4], *item)
+            values('{}',{:>8.2f}, '{}',{:>8.2f},{:>8.2f},{:>8.2f},{:>8.2f},{:>16.2f},{:>14.0f});\n".format(stock_code, item[4], *item)
             dst_file.write(sql)
 
-    
+        
 # 主程序入口
 def main(folder_path, sql_path, date_code, min_scode, max_scode):
     print('folder: {}'.format(folder_path))
@@ -45,6 +45,7 @@ def main(folder_path, sql_path, date_code, min_scode, max_scode):
             src_file = open(folder_path + '\\' + file_path, 'rb+')
             extract(src_file, dst_file, stock_code, date_code)
             src_file.close()
+            return 
             
     return 0
     

@@ -8,13 +8,17 @@ def get_last_status(db, stock_code):
     sql = "SELECT * FROM stock_trend_1day WHERE stock_code = '%s' ORDER BY trade_date DESC LIMIT 1" % (stock_code)
     cursor = db.cursor()
     cursor.execute(sql)
-    return cursor.fetchone() if cursor.rowcount > 0 else (stock_code, '00000000', 0, '', '上升趋势', '上升趋势', 0, 0, 0, 0, 0, 0, 0, 0)
+    return cursor.fetchone() if cursor.rowcount > 0 else (stock_code, '00000000', 0, '', '上升趋势', '上升趋势', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '')
     
 def save_calc_status(db, stock_code, trade_date, adjusted_close, status):
     sql = "INSERT INTO stock_trend_1day(stock_code, trade_date, adjusted_close, hint, trend, state, \
-    last_up_minor, last_up_nature, last_up_trend, last_down_trend, last_down_nature, last_down_minor, \
-    last_up_barrier, last_down_support) VALUES ('%s', '%s', %f, '%s', '%s', '%s', \
-    %f, %f, %f, %f, %f, %f, %f, %f)" % (stock_code, trade_date, adjusted_close, *status)
+    last_up_minor_val, last_up_minor_date, last_up_nature_val, last_up_nature_date, \
+    last_up_trend_val, last_up_trend_date, last_down_trend_val,last_down_trend_date, \
+    last_down_nature_val, last_down_nature_date, last_down_minor_val, last_down_minor_date, \
+    last_up_barrier_val, last_up_barrier_date, last_down_support_val, last_down_support_date) \
+    VALUES ('%s', '%s', %f, '%s', '%s', '%s', \
+    %f, '%s', %f, '%s', %f, '%s', %f, '%s', %f, '%s', %f, '%s', %f, '%s', %f, '%s')" \
+    % (stock_code, trade_date, adjusted_close, *status)
     cursor = db.cursor()
     cursor.execute(sql)
         
@@ -53,12 +57,12 @@ def main():
     for row in rows:
         stock_code = row[0]
         print('calculating %s...' % (stock_code))
-        try:
-            do_calculation(db, stock_code)
-            db.commit()
-        except:
-            db.rollback()
-            print("error - stock_code: %s" % (stock_code))
+#        try:
+        do_calculation(db, stock_code)
+        db.commit()
+#        except:
+#            db.rollback()
+#            print("error - stock_code: %s" % (stock_code))
 
     # 关闭数据库连接
     db.close()

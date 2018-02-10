@@ -8,9 +8,10 @@ class TrendMachine:
     __keep_ratio__ = Decimal(0.03)
 
     def __init__(self, trend, state, \
-    last_up_minor_val, last_up_nature_val, last_up_trend_val, \
-    last_down_trend_val, last_down_nature_val, last_down_minor_val, \
-    last_up_barrier_val, last_down_support_val):
+    last_up_minor_val, last_up_minor_date, last_up_nature_val, last_up_nature_date, \
+    last_up_trend_val, last_up_trend_date, last_down_trend_val,last_down_trend_date, \
+    last_down_nature_val, last_down_nature_date, last_down_minor_val, last_down_minor_date, \
+    last_up_barrier_val, last_up_barrier_date, last_down_support_val, last_down_support_date):
         self.last_up_minor_val     = last_up_minor_val
         self.last_up_nature_val    = last_up_nature_val
         self.last_up_trend_val     = last_up_trend_val
@@ -26,6 +27,16 @@ class TrendMachine:
         self.last_up_barrier_val   = last_up_barrier_val
         self.last_down_support_val = last_down_support_val
 
+        self.last_up_minor_date     = last_up_minor_date
+        self.last_up_nature_date    = last_up_nature_date
+        self.last_up_trend_date     = last_up_trend_date
+
+        self.last_down_trend_date   = last_down_trend_date
+        self.last_down_nature_date  = last_down_nature_date
+        self.last_down_minor_date   = last_down_minor_date
+        
+        self.last_up_barrier_date   = last_up_barrier_date
+        self.last_down_support_date = last_down_support_date
         
     def step(self, trade_date, trade_close):
         self.hint = ''
@@ -53,9 +64,10 @@ class TrendMachine:
         
     def status(self):
         return (self.hint, self.trend, self.state, \
-        self.last_up_minor_val, self.last_up_nature_val, self.last_up_trend_val, \
-        self.last_down_trend_val, self.last_down_nature_val, self.last_down_minor_val, \
-        self.last_up_barrier_val, self.last_down_support_val)
+        self.last_up_minor_val, self.last_up_minor_date, self.last_up_nature_val, self.last_up_nature_date, \
+        self.last_up_trend_val, self.last_up_trend_date, self.last_down_trend_val,self.last_down_trend_date, \
+        self.last_down_nature_val, self.last_down_nature_date, self.last_down_minor_val, self.last_down_minor_date, \
+        self.last_up_barrier_val, self.last_up_barrier_date, self.last_down_support_val, self.last_down_support_date)
         
     def __round__(self, value):
         #return round(value, 2)
@@ -67,6 +79,7 @@ class TrendMachine:
         if val >= self.last_up_trend_val or transfer:
             # 记录数值和位置
             self.last_up_trend_val = val
+            self.last_up_trend_date= row
             
             return
         
@@ -94,6 +107,7 @@ class TrendMachine:
         if val >= self.last_up_nature_val or transfer:
             # 记录数值和位置
             self.last_up_nature_val = val
+            self.last_up_nature_date= row
             
             return
         
@@ -107,6 +121,7 @@ class TrendMachine:
         if val <= self.__round__(self.last_up_nature_val * (1 - TrendMachine.__turn_ratio__)):
             # 记录数值和位置
             self.last_up_barrier_val = self.last_up_nature_val
+            self.last_up_barrier_date= self.last_up_nature_date
             
             # 转换状态
             #if val <= self.last_down_nature_val:
@@ -127,6 +142,7 @@ class TrendMachine:
         if val <= self.last_down_trend_val or transfer:
             # 记录数值和位置
             self.last_down_trend_val = val
+            self.last_down_trend_date= row
             
             return
         
@@ -155,6 +171,7 @@ class TrendMachine:
         if val <= self.last_down_nature_val or transfer:
             # 记录数值和位置
             self.last_down_nature_val = val
+            self.last_down_nature_date= row
             
             return
         
@@ -168,6 +185,7 @@ class TrendMachine:
         if val >= self.__round__(self.last_down_nature_val * (1 + TrendMachine.__turn_ratio__)):
             # 记录数值和位置
             self.last_down_support_val = self.last_down_nature_val
+            self.last_down_support_date= self.last_down_nature_date
             
             # 转换状态
             #if val >= self.last_up_nature_val:
@@ -196,6 +214,7 @@ class TrendMachine:
         if val >= self.last_up_minor_val or transfer:
             # 记录数值和位置
             self.last_up_minor_val = val
+            self.last_up_minor_date= row
             
             return
         
@@ -228,6 +247,7 @@ class TrendMachine:
         if val <= self.last_down_minor_val or transfer:
             # 记录数值和位置
             self.last_down_minor_val = val
+            self.last_down_minor_date= row
             
             return
         
