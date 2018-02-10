@@ -45,7 +45,6 @@ def main(folder_path, sql_path, date_code, min_scode, max_scode):
             src_file = open(folder_path + '\\' + file_path, 'rb+')
             extract(src_file, dst_file, stock_code, date_code)
             src_file.close()
-            return 
             
     return 0
     
